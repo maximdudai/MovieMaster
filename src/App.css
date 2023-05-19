@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Default styles */
+.theme-ligth {
+    color: theme('colors.dark');
+    background-color: theme('colors.light');
+}
+.theme-dark {
+    color: theme('colors.light');
+    background-color: theme('colors.dark');
+}

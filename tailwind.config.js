@@ -1,17 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './pages/**/*.{js, jsx}',
-    './components/**/*.{js, jsx}',
-  ],
-  darkMode: ['class', '[data-theme="dark"]'],
+  darkMode: ['class'],
+  content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
-    extend: {
-        colors: {
-            dark: '#292929',
-            light: '#dfdfdf'
-        }
-    },
+      extend: {
+          colors: {
+              dark: '#292929',
+              light: '#dfdfdf'
+          }
+      }
   },
   plugins: [],
 }
