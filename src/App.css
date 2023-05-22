@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Default styles */
-.theme-ligth {
-    color: theme('colors.dark');
-    background-color: theme('colors.light');
-}
-.theme-dark {
-    color: theme('colors.light');
-    background-color: theme('colors.dark');
+
+.bg-image {
+    position: absolute;
+    z-index: -999;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: linear-gradient(rgba(0, 0, 0, 0.897), rgba(0, 0, 0, 0.445)),
+    url('./photos/bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
