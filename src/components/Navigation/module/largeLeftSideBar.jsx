@@ -16,7 +16,7 @@ export const LargeLeftSideBarNavigation = ({ activeMenu }) => {
 
     return (
         <>
-            <div className="largeLeftNavbar w-1/6 h-screen line-clamp-1">
+            <div className="largeLeftNavbar w-[16%] h-screen line-clamp-1">
 
                 <div className="leftBarContent m-5">
                     <button className="leftSideNavbarLogo">

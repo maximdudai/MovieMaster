@@ -8,13 +8,13 @@ import PropTypes from 'prop-types';
  * @returns 
  */
 
-export const Search = ({ className, type, searchInput }) => {
+export const Search = ({ className, type = 'text', searchInput, placeholder = 'Search...' }) => {
     return (
         <>
             <input
                 className={className}
                 type={type}
-                placeholder="Search"
+                placeholder={placeholder}
                 onChange={searchInput}
             />
         </>
@@ -25,4 +25,5 @@ Search.propTypes = {
     className: PropTypes.string,
     type: PropTypes.string,
     searchInput: PropTypes.func,
+    placeholder: PropTypes.string,
 }
