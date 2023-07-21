@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 
 /**
  * 
- * @param {className} className
- * @param {type} type
- * @param {searchInput} searchInput
+ * @param {string} className
+ * @param {string} type
+ * @param {string} searchInput
+ * @param {any} onPressEnter
  * @returns 
  */
 
-export const Search = ({ className, type = 'text', searchInput, placeholder = 'Search...' }) => {
+export const SearchComponent = ({ className, type = 'text', searchInput, placeholder = 'Search...', onPressEnter }) => {
     return (
         <>
             <input
@@ -16,14 +17,16 @@ export const Search = ({ className, type = 'text', searchInput, placeholder = 'S
                 type={type}
                 placeholder={placeholder}
                 onChange={searchInput}
+                onKeyDown={onPressEnter}
             />
         </>
     )
 };
 
-Search.propTypes = {
+SearchComponent.propTypes = {
     className: PropTypes.string,
     type: PropTypes.string,
     searchInput: PropTypes.func,
     placeholder: PropTypes.string,
+    onPressEnter: PropTypes.func
 }

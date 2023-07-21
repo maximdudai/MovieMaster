@@ -1,4 +1,6 @@
-import { Search } from '../../modules/Search/Search';
+import PropTypes from 'prop-types'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { TfiSearch } from 'react-icons/tfi';
@@ -6,23 +8,47 @@ import { RiUserVoiceLine, RiNotification3Line } from 'react-icons/ri';
 import { BiMessageSquareDetail } from 'react-icons/bi';
 
 import '../style/topSideBar/topSideBar.css';
+import { SearchComponent } from '../../modules/Search/SearchComponent';
 
-export const LargeTopSideBarNavigation = () => {
+export const LargeTopSideBarNavigation = ({ width }) => {
+
+    const [searchMovie, setSearchMovie] = useState('');
+    const history = useNavigate();
+
+    const onUserSearch = (e) => {
+        setSearchMovie(e.target.value);
+    };
+    const onUserPressEnter = (e) => {
+        e.preventDefault();
+
+        const key = e.key || e.keyCode;
+
+        if(key !== 'Enter')
+            return;
+
+        if(!searchMovie)
+            return console.log('searchMovie is empty');
+
+        history(`/search?query=${encodeURIComponent(searchMovie)}`);
+    };
+
     return (
         <>
-            <div className="largeTopNavbar flex items-center justify-between w-full h-28">
+            <div className="largeTopNavbar flex items-center justify-between w-full h-28 px-3 lg:p-0">
                 <div className="topLeftSideContent w-full flex items-center gap-5">
                     
                     <div className="manageLeftBarNavbar flex gap-2">
                         <button><AiOutlineLeft /></button>
                         <button className='text-gray-500'><AiOutlineRight /></button>
                     </div>
-                    <div className="searchFieldInput w-2/5 flex items-center p-2 bg-black/5 border-[1px] rounded-2xl">
+                    <div className="searchFieldInput w-full flex items-center p-2 bg-black/5 border-[1px] rounded-2xl lg:w-2/5">
                         
                         <div className="searchInput w-full flex items-center">
                             <span className='text-sm p-2'><TfiSearch /></span>
-                            <Search 
+                            <SearchComponent 
                                 className={'bg-transparent w-full focus:outline-none px-1'}
+                                searchInput={onUserSearch}
+                                onPressEnter={onUserPressEnter}
                             />
                         </div>
 
@@ -65,4 +91,8 @@ export const LargeTopSideBarNavigation = () => {
             </div>
         </>
     )
+};
+
+LargeTopSideBarNavigation.propTypes = {
+    width: PropTypes.number
 };

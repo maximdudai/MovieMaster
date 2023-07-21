@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { MobileNavigationBar } from "./module/mobileNavBar";
 
 import { LargeLeftSideBarNavigation } from "./module/largeLeftSideBar";
 import { LargeTopSideBarNavigation } from "./module/largeTopSideBar";
@@ -20,17 +19,9 @@ export const Navigation = () => {
 
     return (
         <>
-            <div className="NavigationBar w-full flex justify-center items-center bg-black/30 drop-shadow-lg">
-                {
-                    width <= 1024 ? (
-                        <MobileNavigationBar />
-                    ) : (
-                        <div className="largeNavigationBar w-full flex">
-                            <LargeLeftSideBarNavigation />
-                            <LargeTopSideBarNavigation />
-                        </div>
-                    )
-                }
+            <div className="NavigationBar w-full flex flex-row-reverse justify-center bg-black/30 drop-shadow-lg">
+                <LargeTopSideBarNavigation />
+                { width >= 1150 && <LargeLeftSideBarNavigation /> }
             </div>
         </>
     )
