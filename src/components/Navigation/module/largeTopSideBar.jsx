@@ -13,14 +13,12 @@ import { SearchComponent } from '../../modules/Search/SearchComponent';
 export const LargeTopSideBarNavigation = ({ width }) => {
 
     const [searchMovie, setSearchMovie] = useState('');
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const onUserSearch = (e) => {
         setSearchMovie(e.target.value);
     };
     const onUserPressEnter = (e) => {
-        e.preventDefault();
-
         const key = e.key || e.keyCode;
 
         if(key !== 'Enter')
@@ -29,7 +27,7 @@ export const LargeTopSideBarNavigation = ({ width }) => {
         if(!searchMovie)
             return console.log('searchMovie is empty');
 
-        history(`/search?query=${encodeURIComponent(searchMovie)}`);
+        navigate(`/search?query=${encodeURIComponent(searchMovie)}`);
     };
 
     return (
