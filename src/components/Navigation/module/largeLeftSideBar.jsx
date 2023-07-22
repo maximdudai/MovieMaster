@@ -25,12 +25,12 @@ export const LargeLeftSideBarNavigation = ({ activeMenu }) => {
 
                     <div className={`menuList ${leftSideAppStyle}`}>
                         <div className="menuListTitle my-3">
-                            <p className="text-[11px] text-gray-400">
+                            <p className="text-[12px] tracking-wide text-gray-400">
                                 Menu
                             </p>
                         </div>
 
-                        <Link to={'/browse'} className={`flex items-center ${activeMenu === 'Browse' ? 'text-white' : 'text-gray-400'} hover:text-gray-200`}>
+                        <Link to={'/'} className={`flex items-center ${activeMenu === 'Browse' ? 'text-white' : 'text-gray-400'} hover:text-gray-200`}>
                             <span className={`${leftBarIconList}`} ><CgBrowse /></span>
                             <span>Browse</span>
                         </Link>
@@ -46,7 +46,7 @@ export const LargeLeftSideBarNavigation = ({ activeMenu }) => {
 
                     <div className={`socialList ${leftSideAppStyle}`}>
                         <div className="menuListTitle my-3">
-                            <p className="text-[11px] text-gray-400">
+                            <p className="text-[12px] tracking-wide text-gray-400">
                                 Social
                             </p>
                         </div>
@@ -62,7 +62,7 @@ export const LargeLeftSideBarNavigation = ({ activeMenu }) => {
                     </div>
                     <div className={`generalList ${leftSideAppStyle}`}>
                         <div className="menuListTitle my-3">
-                            <p className="text-[11px] text-gray-400">
+                            <p className="text-[12px] tracking-wide text-gray-400">
                                 General
                             </p>
                         </div>
