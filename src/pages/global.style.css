@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.moviemaster {
+    @apply absolute z-20 w-[86.2%] min-h-screen right-0 top-28
+}

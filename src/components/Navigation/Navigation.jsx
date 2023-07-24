@@ -1,27 +1,33 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { LargeLeftSideBarNavigation } from "./module/largeLeftSideBar";
 import { LargeTopSideBarNavigation } from "./module/largeTopSideBar";
 
 export const Navigation = () => {
-    const [width, setWidth] = useState(window.innerWidth);
+    const [mobileToggleLeftSideBar, setMobileToggleLeftSideBar] = useState(false);
+
+    const [activeMenu, setActiveMenu] = useState(() => {
+        const lastPage = localStorage.getItem('activeMenu');
+        return lastPage ?? 'Browse';
+    });
+
+    const toggleMobileLeftSideBar = () => {
+        setMobileToggleLeftSideBar(!mobileToggleLeftSideBar);
+    };
+
+    const onUserChangePage = (page) => {
+        setActiveMenu(page);
+    };
 
     useEffect(() => {
-        const handleResize = () => {
-            setWidth(window.innerWidth);
-        };
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+        localStorage.setItem("activeMenu", activeMenu);
+    }, [activeMenu]);
 
     return (
         <>
-            <div className="NavigationBar w-full flex flex-row-reverse justify-center bg-black/30 drop-shadow-lg">
-                <LargeTopSideBarNavigation />
-                { width >= 1150 && <LargeLeftSideBarNavigation /> }
+            <div className="NavigationBar w-full flex flex-col lg:flex-row-reverse justify-center bg-black/30 drop-shadow-lg">
+                <LargeTopSideBarNavigation toggleLeftSideMenu={toggleMobileLeftSideBar} />
+                <LargeLeftSideBarNavigation toggleLeftSideMenu={mobileToggleLeftSideBar} handlePageClick={onUserChangePage} activeMenu={activeMenu} />
             </div>
         </>
     )

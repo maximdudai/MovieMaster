@@ -1,20 +1,22 @@
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
-import { HomePage } from './pages/Home/HomePage';
+import { HomePage } from './pages/Menu/Home/HomePage';
 import { Search } from './pages/search/Search';
 import { NotFound } from './pages/NotFound/NotFound';
 
 import './App.css';
+import { Watchlist } from './pages/Menu/Watchlist/Watchlist';
 
 function App() {
     return (
       <Router>
-        <main className="MovieMaster w-full h-screen flex flex-col items-center text-gray-200">
+        <main className="MovieMasterPage w-full h-screen flex flex-col items-center text-gray-200">
           <div className="bg-image"></div>
   
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/watchlist" element={<Watchlist />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
