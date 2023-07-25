@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigation } from '../../../components/Navigation/Navigation';
 import axios from 'axios';
 
@@ -14,36 +14,40 @@ const options = {
     }
 };
 
-
-
 export const HomePage = () => {
-    const [data, setData] = useState([]);
+    const [movieContent, setMovieContent] = useState(null); // Use correct state variable name
 
-    useEffect(() => {
-    //   const pastData = localStorage.getItem('moviesData');
-    
-    //   if (pastData) {
-    //     setData(JSON.parse(pastData));
-    //   }
-    
-    async function fetchData() {
+    // https://image.tmdb.org/t/p/original /id
+
+
+    const fetchMovieImage = (posterPath) => {
+        return `https://image.tmdb.org/t/p/original/${posterPath}`
+    }
+    const fetchData = async () => {
         try {
             const response = await axios.get('https://api.themoviedb.org/3/movie/popular', options);
-            const responseData = response?.data?.results; // Use optional chaining to check for 'data' and 'results'
+            const responseData = response?.data?.results;
             if (!responseData) {
                 throw new Error('Invalid response data');
             }
-            setData(responseData);
-            localStorage.setItem('moviesData', JSON.stringify(responseData));
-            console.log(data[0]?.title);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }
     
-      fetchData();
+            const randomIndex = Math.floor(Math.random() * responseData.length);
+            const randomMovie = responseData[randomIndex];
+    
+            console.log(randomMovie);
+            const movieContent = JSON.stringify(randomMovie);
+            localStorage.setItem('moviesData', movieContent);
+    
+            setMovieContent(randomMovie);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    
+    useEffect(() => {
+        fetchData();
     }, []);
-
+    
 
     return (
         <>
@@ -55,14 +59,35 @@ export const HomePage = () => {
                 <div className="mainPageContent moviemaster">
                     <div className="homepage-container flex flex-col justify-center p-10">
                         
-                        <div className="nowPlaying w-full h-[25rem] rounded-3xl border-[1px] border-gray-400/50">
-                            <Suspense fallback={
-                                <div className='onLoadingData'>
-                                    <h2>Loading data...</h2>
+                        <div className="nowPlaying p-2 gap-2 w-full h-[25rem] rounded-3xl border-[1px] border-gray-400/50 flex items-center flex-wrap">
+                            <div className="movie-card w-full h-auto p-4">
+                            { !movieContent ? (
+                                <div className="loadingData">Loading..</div>
+                            ) : (
+                                <div className="loadedData flex items-center justify-center">
+                                    <div className="movieCardImage w-96 flex items-center justify-center">
+                                        {
+                                            <img 
+                                                className=' w-60 rounded-lg'
+                                                src={fetchMovieImage(movieContent.poster_path)}  
+                                                alt={'movie image'} 
+                                            />
+                                        }
+                                    </div>
+                                    <div className="movieCardContent min-h-[20rem] flex flex-col justify-around max-w-[75%]">
+                                        <div className="movieCardTitle">
+                                            <h1 className="text-4xl font-bold">{movieContent?.title}</h1>
+                                        </div>
+                                        <div className="movieCardDescription flex break-words">
+                                            <p className="text-gray-300 text-lg">{movieContent?.overview}</p>
+                                        </div>
+                                        <div className="movieCardReleaseDate">
+                                            <p className='text-gray-300 text-lg'>{movieContent?.release_date}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            }>
-
-                            </Suspense>
+                            )}
+                            </div>
                         </div>
 
                     </div>
