@@ -10,7 +10,7 @@ const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjA3OGU0ZTdjZGQ3OGQxYTljYmU2MzQ5OGYwMzE5YiIsInN1YiI6IjY0NjdkMzIwYTRhZjhmMDExZDFlYTU1YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.py-aSMgZzEttBthynUsWIihBSz7ray0cDh9GCEDulAI"
+        Authorization: "Bearer " + import.meta.VITE_API_KEY
     }
 };
 
@@ -20,8 +20,8 @@ export const HomePage = () => {
     // https://image.tmdb.org/t/p/original /id
 
 
-    const fetchMovieImage = (posterPath) => {
-        return `https://image.tmdb.org/t/p/original/${posterPath}`
+    const fetchMovieImage = (path) => {
+        return `https://image.tmdb.org/t/p/original/${path}`
     }
     const fetchData = async () => {
         try {
@@ -64,25 +64,36 @@ export const HomePage = () => {
                             { !movieContent ? (
                                 <div className="loadingData">Loading..</div>
                             ) : (
-                                <div className="loadedData flex items-center justify-center">
-                                    <div className="movieCardImage w-96 flex items-center justify-center">
-                                        {
-                                            <img 
-                                                className=' w-60 rounded-lg'
-                                                src={fetchMovieImage(movieContent.poster_path)}  
-                                                alt={'movie image'} 
-                                            />
-                                        }
-                                    </div>
-                                    <div className="movieCardContent min-h-[20rem] flex flex-col justify-around max-w-[75%]">
-                                        <div className="movieCardTitle">
-                                            <h1 className="text-4xl font-bold">{movieContent?.title}</h1>
+                                <div className="container overflow-y-auto mt-[13.8rem]">
+                                    <div className="loadedData flex items-center justify-center">
+                                        <div className="movieBackgroundCard absolute -z-10 ">
+                                            {
+                                                <img 
+                                                    className='w-full relative'
+                                                    src={fetchMovieImage(movieContent?.backdrop_path)}  
+                                                    alt={'movie image'} 
+                                                />
+                                            }
                                         </div>
-                                        <div className="movieCardDescription flex break-words">
-                                            <p className="text-gray-300 text-lg">{movieContent?.overview}</p>
+                                        <div className="movieCardImage w-96 flex items-center justify-center">
+                                            {
+                                                <img 
+                                                    className='w-60 rounded-lg shadow-sm shadow-red-600'
+                                                    src={fetchMovieImage(movieContent?.poster_path)}  
+                                                    alt={'movie image'} 
+                                                />
+                                            }
                                         </div>
-                                        <div className="movieCardReleaseDate">
-                                            <p className='text-gray-300 text-lg'>{movieContent?.release_date}</p>
+                                        <div className="movieCardContent min-h-[20rem] flex flex-col justify-around w-[75%]">
+                                            <div className="movieCardTitle">
+                                                <h1 className="text-4xl font-bold">{movieContent?.title}</h1>
+                                            </div>
+                                            <div className="movieCardDescription flex break-words">
+                                                <p className="text-gray-300 text-lg">{movieContent?.overview}</p>
+                                            </div>
+                                            <div className="movieCardReleaseDate">
+                                                <p className='text-gray-300 text-lg'>{movieContent?.release_date}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

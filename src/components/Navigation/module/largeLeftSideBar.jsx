@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
@@ -10,10 +11,16 @@ import { CiSettings } from 'react-icons/ci';
 
 import '../style/leftSideBar/leftSideBar.css';
 
-const leftSideAppStyle = 'flex flex-col gap-2 px-3 my-20';
-const leftBarIconList = 'mr-3 p-1.5 bg-red-600 rounded-full text-white text-lg';
+const leftSideAppStyle = 'flex flex-col gap-2 pl-3 my-20';
+const leftBarIconList = 'mr-3 p-1.5 rounded-full text-white text-lg';
 
-export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu, handlePageClick, activeMenu }) => {
+export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu }) => {
+
+    const [currentMenu, setCurrentMenu] = useState('Browse');
+
+    const handlePageClickMenu = (page) => {
+        setCurrentMenu(page);
+    }
 
     return (
         <div className={`largeLeftNavbar line-clamp-1 min-h-screen ${toggleLeftSideMenu ? 'block w-screen' : 'hidden'} lg:w-[16%] lg:block`}>
@@ -21,7 +28,7 @@ export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu, handlePageClick
             <div className="leftBarContent">
                 <div className="leftSideNavbarLogo bg-white/10 min-h-[5rem] lg:min-h-[7rem] min-w-[10rem] flex justify-center items-center">
                     <button className="logoButton">
-                        <Link onClick={() => handlePageClick('Browse')} to={'/'}>MovieMaster</Link>
+                        <Link onClick={() => handlePageClickMenu('Browse')} to={'/'}>MovieMaster</Link>
                     </button>
                 </div>
 
@@ -32,16 +39,16 @@ export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu, handlePageClick
                         </p>
                     </div>
 
-                    <Link onClick={() => handlePageClick('Browse')} to={'/'} className={`flex items-center ${activeMenu === 'Browse' ? 'text-white' : 'text-gray-400'} hover:text-gray-200`}>
-                        <span className={`${leftBarIconList}`} ><CgBrowse /></span>
+                    <Link onClick={() => handlePageClickMenu('Browse')} to={'/'} className={`flex items-center h-10 ${currentMenu === 'Browse' ? 'text-white border-r-2 border-red-600' : 'text-gray-400'} hover:text-gray-200`}>
+                        <span className={`${leftBarIconList} ${currentMenu === 'Browse' ? 'bg-red-600' : ''}`} ><CgBrowse /></span>
                         <span>Browse</span>
                     </Link>
-                    <Link onClick={() => handlePageClick('Watchlist')} to={'/watchlist'} className={`flex items-center ${activeMenu === 'Watchlist' ? 'text-white' : 'text-gray-400'} hover:text-gray-200`}>
-                        <span className={`${leftBarIconList}`}><MdFavoriteBorder className='text-white' /></span>
+                    <Link onClick={() => handlePageClickMenu('Watchlist')} to={'/watchlist'} className={`flex items-center h-10 ${currentMenu === 'Watchlist' ? 'text-white border-r-2 border-red-600' : 'text-gray-400'} hover:text-gray-200`}>
+                        <span className={`${leftBarIconList} ${currentMenu === 'Watchlist' ? 'bg-red-600' : ''}`}><MdFavoriteBorder className='text-white' /></span>
                         <span>Watchlist</span>
                     </Link>
-                    <Link onClick={() => handlePageClick('ComingSoon')} to={'/'} className={`flex items-center ${activeMenu === 'ComingSoon' ? 'text-white' : 'text-gray-400'} hover:text-gray-200`}>
-                        <span className={`${leftBarIconList}`}><BsCalendar2Check /></span>
+                    <Link onClick={() => handlePageClickMenu('ComingSoon')} to={'/'} className={`flex items-center h-10 ${currentMenu === 'ComingSoon' ? 'text-white border-r-2 border-red-600' : 'text-gray-400'} hover:text-gray-200`}>
+                        <span className={`${leftBarIconList} ${currentMenu === 'ComingSoon' ? 'bg-red-600' : ''}`}><BsCalendar2Check /></span>
                         <span>Coming Soon</span>
                     </Link>
                 </div>
@@ -53,12 +60,12 @@ export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu, handlePageClick
                         </p>
                     </div>
 
-                    <Link onClick={() => handlePageClick('Friends')} to={'/friends'} className={`flex items-center ${activeMenu === 'Friends' ? 'text-white' : 'text-gray-400'} hover:text-gray-200`}>
-                        <span className={`${leftBarIconList}`}><BiGroup /></span>
+                    <Link onClick={() => handlePageClickMenu('Friends')} to={'/friends'} className={`flex items-center h-10 ${currentMenu === 'Friends' ? 'text-white border-r-2 border-red-600' : 'text-gray-400'} hover:text-gray-200`}>
+                        <span className={`${leftBarIconList} ${currentMenu === 'Friends' ? 'bg-red-600' : ''}`}><BiGroup /></span>
                         <span>Friends</span>
                     </Link>
-                    <Link onClick={() => handlePageClick('Parties')} to={'/parties'} className={`flex items-center ${activeMenu === 'Parties' ? 'text-white' : 'text-gray-400'} hover:text-gray-200`}>
-                        <span className={`${leftBarIconList}`}><HiOutlineUserGroup /></span>
+                    <Link onClick={() => handlePageClickMenu('Parties')} to={'/parties'} className={`flex items-center h-10 ${currentMenu === 'Parties' ? 'text-white border-r-2 border-red-600' : 'text-gray-400'} hover:text-gray-200`}>
+                        <span className={`${leftBarIconList} ${currentMenu === 'Parties' ? 'bg-red-600' : ''}`}><HiOutlineUserGroup /></span>
                         <span>Parties</span>
                     </Link>
                 </div>
@@ -69,12 +76,12 @@ export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu, handlePageClick
                         </p>
                     </div>
 
-                    <Link onClick={() => handlePageClick('Settings')} to={'/settings'} className={`flex items-center ${activeMenu === 'Settings' ? 'text-white' : 'text-gray-400'} hover:text-gray-200`}>
-                        <span className={`${leftBarIconList}`}><CiSettings /></span>
+                    <Link onClick={() => handlePageClickMenu('Settings')} to={'/settings'} className={`flex items-center h-10 ${currentMenu === 'Settings' ? 'text-white border-r-2 border-red-600' : 'text-gray-400'} hover:text-gray-200`}>
+                        <span className={`${leftBarIconList} ${currentMenu === 'Settings' ? 'bg-red-600' : ''}`}><CiSettings /></span>
                         <span>Settings</span>
                     </Link>
-                    <Link onClick={() => handlePageClick('LogOut')} to={'/logout'} className={`flex items-center ${activeMenu === 'LogOut' ? 'text-white' : 'text-gray-400'} hover:text-gray-200`}>
-                        <span className={`${leftBarIconList}`}><CgLogOut /></span>
+                    <Link onClick={() => handlePageClickMenu('LogOut')} to={'/logout'} className={`flex items-center h-10 ${currentMenu === 'LogOut' ? 'text-white border-r-2 border-red-600' : 'text-gray-400'} hover:text-gray-200`}>
+                        <span className={`${leftBarIconList} ${currentMenu === 'LogOut' ? 'bg-red-600' : ''}`}><CgLogOut /></span>
                         <span>Log Out</span>
                     </Link>
                 </div>
