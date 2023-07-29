@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { TfiSearch } from 'react-icons/tfi';
@@ -10,12 +10,13 @@ import { BiMessageSquareDetail } from 'react-icons/bi';
 import '../style/topSideBar/topSideBar.css';
 import { SearchComponent } from '../../modules/Search/SearchComponent';
 
+import Logo from '../../../assets/logo.png';
+
 export const LargeTopSideBarNavigation = ({ toggleLeftSideMenu }) => {
 
     const [searchMovie, setSearchMovie] = useState('');
 
     const navigate = useNavigate();
-
  
     const onUserSearch = (e) => {
         setSearchMovie(e.target.value);
@@ -33,8 +34,17 @@ export const LargeTopSideBarNavigation = ({ toggleLeftSideMenu }) => {
     };
 
     return (
-        <div className={`largeTopNavbar flex items-center justify-between w-full h-28 px-10`}>
+        <div className={`largeTopNavbar flex items-center justify-between w-full h-28`}>
             <div className="topLeftSideContent w-full flex items-center gap-5">
+                <div className="leftSideNavbarLogo flex justify-center w-56">
+                    <Link to={'/'}>
+                        <img 
+                            className='border-[1px] w-12 p-2 rounded-full border-red-600'
+                            src={Logo} 
+                            alt="MovieMasterLogo" />
+                    </Link>
+                </div>
+
                 <div className="manageLeftBarMobile">
                     <button
                         onClick={toggleLeftSideMenu}    
@@ -64,15 +74,17 @@ export const LargeTopSideBarNavigation = ({ toggleLeftSideMenu }) => {
             </div>
 
             <div className="topRightSideContent w-auto flex items-center justify-end mx-5 gap-5">
-                <div className="profileNotifications">
-                    <button className='text-[1.25rem]'>
-                        <RiNotification3Line />
-                    </button>
-                </div>
-                <div className="profileMessages">
-                    <button className='text-[1.25rem]'>
-                        <BiMessageSquareDetail />
-                    </button>
+                <div className="quickAccesButtons lg:flex gap-2">
+                    <div className="profileNotifications">
+                        <button className='text-[1.25rem]'>
+                            <RiNotification3Line />
+                        </button>
+                    </div>
+                    <div className="profileMessages">
+                        <button className='text-[1.25rem]'>
+                            <BiMessageSquareDetail />
+                        </button>
+                    </div>
                 </div>
 
                 <div className="profileSection flex items-center bg-white/25 p-2 rounded-lg cursor-pointer">

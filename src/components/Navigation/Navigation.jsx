@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import { LargeLeftSideBarNavigation } from "./module/largeLeftSideBar";
 import { LargeTopSideBarNavigation } from "./module/largeTopSideBar";
 
 export const Navigation = () => {
@@ -13,9 +12,8 @@ export const Navigation = () => {
 
     return (
         <>
-            <div className="NavigationBar w-full flex flex-col lg:flex-row-reverse justify-center bg-black/30 drop-shadow-lg">
+            <div className="NavigationBar bg-black/30 drop-shadow-lg">
                 <LargeTopSideBarNavigation toggleLeftSideMenu={toggleMobileLeftSideBar} />
-                <LargeLeftSideBarNavigation toggleLeftSideMenu={mobileToggleLeftSideBar} />
             </div>
         </>
     )

@@ -16,6 +16,8 @@ const leftBarIconList = 'mr-3 p-1.5 rounded-full text-white text-lg';
 
 export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu }) => {
 
+    console.log(toggleLeftSideMenu);
+
     const [currentMenu, setCurrentMenu] = useState('Browse');
 
     const handlePageClickMenu = (page) => {
@@ -23,15 +25,9 @@ export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu }) => {
     }
 
     return (
-        <div className={`largeLeftNavbar line-clamp-1 min-h-screen ${toggleLeftSideMenu ? 'block w-screen' : 'hidden'} lg:w-[16%] lg:block`}>
+        <div className={`largeLeftNavbar line-clamp-1 min-h-screen`}>
 
             <div className="leftBarContent">
-                <div className="leftSideNavbarLogo bg-white/10 min-h-[5rem] lg:min-h-[7rem] min-w-[10rem] flex justify-center items-center">
-                    <button className="logoButton">
-                        <Link onClick={() => handlePageClickMenu('Browse')} to={'/'}>MovieMaster</Link>
-                    </button>
-                </div>
-
                 <div className={`menuList ${leftSideAppStyle}`}>
                     <div className="menuListTitle">
                         <p className="text-[12px] tracking-wide text-gray-400">
