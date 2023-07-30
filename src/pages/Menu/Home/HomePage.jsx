@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Navigation } from '../../../components/Navigation/Navigation';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { Navigation } from '../../../components/Navigation/Navigation';
 import { LargeLeftSideBarNavigation } from '../../../components/Navigation/module/largeLeftSideBar';
+import { ResolutionContext } from '../../../context/resolution';
+
+
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const options = {
@@ -15,13 +18,13 @@ const options = {
 
 export const HomePage = () => {
     const [movieContent, setMovieContent] = useState(null); // Use correct state variable name
-    const [mobileToggleLeftSideBar, setMobileToggleLeftSideBar] = useState(false);
+    const [leftSideBar, setLeftSideBar] = useState("desktop");
 
+    const dataLayout = useContext(ResolutionContext);
 
-    const toggleMobileLeftSideBar = () => {
-        setMobileToggleLeftSideBar(!mobileToggleLeftSideBar);
+    const handleLeftSideBarChange = (leftSideBar) => {
+        setLeftSideBar();
     };
-    // https://image.tmdb.org/t/p/original /id
 
 
     const fetchMovieImage = (path) => {
@@ -51,7 +54,6 @@ export const HomePage = () => {
     useEffect(() => {
         fetchData();
     }, []);
-    
 
     return (
         <>
@@ -61,20 +63,22 @@ export const HomePage = () => {
                 </div>
 
                 <div className="mainPageContent flex">
-                    <div className="leftNavigationBar hidden lg:block w-64">
-                        <LargeLeftSideBarNavigation toggleLeftSideMenu={mobileToggleLeftSideBar} />
+                    
+                    <div className="leftNavigationBar">
+                        <LargeLeftSideBarNavigation  />
                     </div>
 
-                    <div className="homepage-container w-full">
+                    <div className="homepageContainer w-full">
                         
                         <div className="movieMasterPopular">
                             {
-                                movieContent ? (
+                                !movieContent ? (
                                     <div className="loadingPopularMovie w-full min-h-screen flex justify-center items-center">
                                         <h1 className='p-2 px-10 border-[1px] border-gray-400 rounded-lg text-2xl animate-pulse'>Loading data...</h1>       
                                     </div>
                                 ) : (
                                     <div className="loadedPopularMovie">
+                                        content
                                     </div>
                                 )
                             }

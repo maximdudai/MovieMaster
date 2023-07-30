@@ -25,7 +25,7 @@ export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu }) => {
     }
 
     return (
-        <div className={`largeLeftNavbar line-clamp-1 min-h-screen`}>
+        <div className={`largeLeftNavbar line-clamp-1 min-h-screen hidden lg:block w-60`}>
 
             <div className="leftBarContent">
                 <div className={`menuList ${leftSideAppStyle}`}>
@@ -43,7 +43,7 @@ export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu }) => {
                         <span className={`${leftBarIconList} ${currentMenu === 'Watchlist' ? 'bg-red-600' : ''}`}><MdFavoriteBorder className='text-white' /></span>
                         <span>Watchlist</span>
                     </Link>
-                    <Link onClick={() => handlePageClickMenu('ComingSoon')} to={'/'} className={`flex items-center h-10 ${currentMenu === 'ComingSoon' ? 'text-white border-r-2 border-red-600' : 'text-gray-400'} hover:text-gray-200`}>
+                    <Link onClick={() => handlePageClickMenu('ComingSoon')} to={'/soon'} className={`flex items-center h-10 ${currentMenu === 'ComingSoon' ? 'text-white border-r-2 border-red-600' : 'text-gray-400'} hover:text-gray-200`}>
                         <span className={`${leftBarIconList} ${currentMenu === 'ComingSoon' ? 'bg-red-600' : ''}`}><BsCalendar2Check /></span>
                         <span>Coming Soon</span>
                     </Link>

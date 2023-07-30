@@ -1,19 +1,19 @@
 import { Navigation } from "../../../components/Navigation/Navigation";
 import { LargeLeftSideBarNavigation } from "../../../components/Navigation/module/largeLeftSideBar";
 
-export const Watchlist = () => {
+export const CoomingSoon = () => {
     return (
-        <div className="MovieMasterWatchlist w-full flex flex-col">
+        <div className="MovieMasterCoomingSoon w-full flex flex-col">
             <div className="navigationBar">
                 <Navigation />
             </div>
 
-            <div className="watchlistContent flex">
+            <div className="CoomingSoonContent flex">
                 <div className="leftSideBar">
                     <LargeLeftSideBarNavigation />
                 </div>
 
-                <div className="watchlistContainer w-full">
+                <div className="CoomingSoonContainer w-full">
                     contenttt
                 </div>
             </div>        

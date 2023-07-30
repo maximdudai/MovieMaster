@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
  * @param {string} className
  * @param {string} type
  * @param {string} searchInput
- * @param {any} onPressEnter
+ * @param {function} onPressEnter
  * @returns 
  */
 

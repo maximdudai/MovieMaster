@@ -4,6 +4,7 @@ import { HomePage } from './pages/Menu/Home/HomePage';
 import { Search } from './pages/search/Search';
 import { NotFound } from './pages/NotFound/NotFound';
 import { Watchlist } from './pages/Menu/Watchlist/Watchlist';
+import { CoomingSoon } from './pages/Menu/ComingSoon/CoomingSoon';
 
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/search" element={<Search />} />
             <Route path="/watchlist" element={<Watchlist />} />
+            <Route path="/soon" element={<CoomingSoon />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
