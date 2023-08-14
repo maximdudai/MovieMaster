@@ -11,7 +11,7 @@ import './App.css';
 function App() {
     return (
       <Router>
-        <main className="MovieMasterPage w-full h-auto text-gray-200">
+        <main className="MovieMasterPage w-full h-full text-gray-200">
           <div className="bg-image"></div>
   
           <Routes>

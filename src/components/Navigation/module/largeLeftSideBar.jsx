@@ -25,7 +25,7 @@ export const LargeLeftSideBarNavigation = ({ toggleLeftSideMenu }) => {
     }
 
     return (
-        <div className={`largeLeftNavbar line-clamp-1 min-h-screen hidden lg:block w-60`}>
+        <div className={`largeLeftNavbar line-clamp-1 h-full hidden lg:block w-60`}>
 
             <div className="leftBarContent">
                 <div className={`menuList ${leftSideAppStyle}`}>
