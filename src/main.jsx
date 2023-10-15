@@ -1,25 +1,26 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { ResolutionProvider } from './context/resolution';
-import App from './App';
+import * as React from "react";
+import { createRoot } from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
 
-import './index.css';
 
-const root = createRoot(document.getElementById('root'));
+import { App } from "./App";
 
-root.render(
-    <StrictMode>
-        <ResolutionProvider>
-            <App />
-        </ResolutionProvider>
-    </StrictMode>
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />
+  },
+  {
+    path: "about",
+    element: <div>About</div>,
+  },
+]);
+
+createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
 );
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <ResolutionContext.Provider>
-//       <App />
-//     </ResolutionContext.Provider>
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );

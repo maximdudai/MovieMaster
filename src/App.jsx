@@ -1,30 +1,12 @@
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { Navigation } from "./Components/Navigation/Navigation"
+import { Landing } from "./Pages/Landing/Landing"
 
-import { HomePage } from './pages/Menu/Home/HomePage';
-import { Search } from './pages/search/Search';
-import { NotFound } from './pages/NotFound/NotFound';
-import { Watchlist } from './pages/Menu/Watchlist/Watchlist';
-import { CoomingSoon } from './pages/Menu/ComingSoon/CoomingSoon';
-
-import './App.css';
-
-function App() {
-    return (
-      <Router>
-        <main className="MovieMasterPage w-full h-full text-gray-200">
-          <div className="bg-image"></div>
+export const App = () => {
+  return (
+    <>
+      <Navigation />
   
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/watchlist" element={<Watchlist />} />
-            <Route path="/soon" element={<CoomingSoon />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-      </Router>
-    );
-  }
-  
-  export default App;
-  
+      <Landing />
+    </>
+  )
+}
