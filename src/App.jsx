@@ -1,12 +1,11 @@
-import { Navigation } from "./Components/Navigation/Navigation"
 import { Landing } from "./Pages/Landing/Landing"
+
+import './App.css'
 
 export const App = () => {
   return (
-    <>
-      <Navigation />
-  
+    <main>
       <Landing />
-    </>
+    </main>
   )
 }
