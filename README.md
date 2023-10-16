@@ -20,6 +20,7 @@ MovieMaster is a movie library app built with Vite, React, and Tailwind CSS. It 
 # Tools
 - [React](https://reactjs.org/) - JavaScript library for building user interfaces.
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapid UI development.
+- [Headless UI](https://headlessui.com/) - Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.
 - [React Icons](https://react-icons.github.io/react-icons/) - A collection of popular icons made as React components.
 - [Axios](https://axios-http.com/) - Promise-based HTTP client for the browser and Node.js.
 ## Installation
