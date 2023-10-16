@@ -2,6 +2,7 @@ import { Links } from "./Components/Links";
 import { isMobile } from "react-device-detect";
 import { MobileMenu } from "./Components/MobileMenu";
 import { Search } from "./Components/Search";
+import { DropDown } from "./Components/DropDown";
 
 export const Navigation = () => {
   return (
@@ -27,11 +28,16 @@ export const Navigation = () => {
             </div>
           </div>
 
-          <div className="rightSideContent">
-            <div className="helpMenu">
-              
+          <div className="rightSideContent flex items-center">
+            <div className="helpMenu flex items-center">
+              <DropDown />
             </div>
-            <div className="profileMenu"></div>
+            <div className="profileMenu">
+              <img 
+                className="rounded-full w-10"
+                src={'https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png'} 
+                alt="" />
+            </div>
           </div>
  
         </div>
