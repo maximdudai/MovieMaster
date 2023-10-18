@@ -1,20 +1,23 @@
+import { isMobile, isTablet } from "react-device-detect";
+
 import { Links } from "./Components/Links";
-import { isMobile } from "react-device-detect";
 import { MobileMenu } from "./Components/MobileMenu";
 import { Search } from "./Components/Search";
-import { DropDown } from "./Components/DropDown";
+import { ProfileMenu } from "./Components/ProfileMenu";
 
 export const Navigation = () => {
+
+
   return (
     <nav className="w-full h-32 p-2 flex items-center justify-between lg:justify-start lg:gap-10 border-b-2 border-red-600">
       <div className="landingPageTitle px-5">
-        <span className="text-red-600 uppercase font-semibold mr-1 text-2xl">
+        <span className="text-red-600 uppercase font-semibold mr-1 text-sm md:text-2xl">
           Movie
         </span>
         <span className="text-md border-t-2 border-red-600">master</span>
       </div>
-
-      {isMobile ? (
+    
+      {isMobile || isTablet ? (
         <MobileMenu />
       ) : (
         <div className="landingPageContainer w-full flex justify-between">
@@ -24,22 +27,13 @@ export const Navigation = () => {
             </div>
 
             <div className="searchMovieBar ml-10">
-              <Search btnClassName={'ml-5 w-24'} />
+              <Search btnClassName={"ml-5 w-24"} />
             </div>
           </div>
 
-          <div className="rightSideContent flex items-center">
-            <div className="helpMenu flex items-center">
-              <DropDown />
-            </div>
-            <div className="profileMenu">
-              <img 
-                className="rounded-full w-10"
-                src={'https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png'} 
-                alt="" />
-            </div>
+          <div className="profileMenuContainer">
+            <ProfileMenu className={''} />
           </div>
- 
         </div>
       )}
     </nav>

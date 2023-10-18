@@ -5,6 +5,14 @@ import { App } from "./App";
 
 const router = createBrowserRouter([
   {
+    path: "*",
+    element: <div>Not Found</div>
+  },
+  {
+    path: "/profile",
+    element: <div>Profile</div>
+  },
+  {
     path: "/",
     element: <App />,
   },
