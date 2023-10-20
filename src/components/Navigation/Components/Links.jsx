@@ -1,77 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import propTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+const linkData = [
+  { href: "/", label: "Home" },
+  { href: "/popular", label: "Popular" },
+  { href: "/films", label: "Films" },
+  { href: "/tv-series", label: "TV Series" },
+  { href: "/actors", label: "Actors" },
+  { href: "/news", label: "News" },
+];
 
 export const Links = ({ className, listClassName }) => {
-  const [activeMenu, setActiveMenu] = useState("Popular");
+  const currentLocation = window.location.pathname;
 
-  const handleActiveMenu = (menu) => {
-    setActiveMenu(menu);
-  };
+  const [activeMenu, setActiveMenu] = useState(currentLocation === "/" ? "Home": currentLocation);
+
+  useEffect(() => {
+    setActiveMenu(currentLocation === "/" ? "Home": currentLocation);
+  }, [currentLocation]);
+
+  const citalizeFirstLetter = (string) => {
+    const finalString = string.charAt(0).toUpperCase() + string.slice(1);
+    return finalString;
+  }
+
+  const getCurrentLocation = (string) => {
+    const removeSlashFromString = string.replace("/", "");
+    const finalString = removeSlashFromString.charAt(0).toUpperCase() + removeSlashFromString.slice(1);
+    return finalString;
+  }
 
   return (
     <ul role="menu" className={twMerge("flex gap-3", className)}>
-      <li
-        role="none"
-        className={twMerge(
-          `cursor-pointer p-2 rounded ${
-            activeMenu === "Popular" ? "bg-white/25" : ""
-          }`,
-          listClassName
-        )}
-        onClick={() => handleActiveMenu("Popular")}
-      >
-        Popular
-      </li>
-      <li
-        role="none"
-        className={twMerge(
-          `cursor-pointer p-2 rounded ${
-            activeMenu === "Films" ? "bg-white/25" : ""
-          }`,
-          listClassName
-        )}
-        onClick={() => handleActiveMenu("Films")}
-      >
-        Films
-      </li>
-      <li
-        role="none"
-        className={twMerge(
-          `cursor-pointer p-2 rounded ${
-            activeMenu === "TVseries" ? "bg-white/25" : ""
-          }`,
-          listClassName
-        )}
-        onClick={() => handleActiveMenu("TVseries")}
-      >
-        TV series
-      </li>
-      <li
-        role="none"
-        className={twMerge(
-          `cursor-pointer p-2 rounded ${
-            activeMenu === "Actors" ? "bg-white/25" : ""
-          }`,
-          listClassName
-        )}
-        onClick={() => handleActiveMenu("Actors")}
-      >
-        Actors
-      </li>
-      <li
-        role="none"
-        className={twMerge(
-          `cursor-pointer p-2 rounded ${
-            activeMenu === "News" ? "bg-white/25" : ""
-          }`,
-          listClassName
-        )}
-        onClick={() => handleActiveMenu("News")}
-      >
-        News
-      </li>
+      {linkData.map(({ href, label }, index) => {
+        return (
+          <Link key={index} to={href} className={twMerge(
+            `cursor-pointer p-2 rounded ${
+              getCurrentLocation(activeMenu) === citalizeFirstLetter(label) ? "bg-white/25" : ""
+            }`,
+            listClassName
+          )}>
+            {label}
+          </Link>
+        );
+      })}
     </ul>
   );
 };

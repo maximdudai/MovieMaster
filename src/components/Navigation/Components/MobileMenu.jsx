@@ -21,7 +21,7 @@ export const MobileMenu = () => {
             {/* TODO: verify if user logged in */}
             <ProfileMenu className={'flex flex-row-reverse justify-between '} />
         
-            <Links className={'block'} listClassName={'my-5'} />
+            <Links className={'flex-col mt-5'} />
             <Search className={'w-full mt-10'} btnClassName={'w-full'}/>
         </div>
       )}

@@ -7,7 +7,7 @@ export const Landing = () => {
       <Navigation />
 
       <section className="landingPageContainer">
-
+        hello
       </section>
     </>
   )
