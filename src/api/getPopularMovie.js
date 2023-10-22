@@ -2,10 +2,17 @@
 
 import axios from 'axios';
 
-const API_KEY = 'YOUR_TMDB_API_KEY';
+import { appSetting } from './settings/settings';
 
-export const fetchMovies = async () => {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
-  const data = await response.json();
-  return data.results;
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: appSetting.API_KEY
+  }
+};
+
+export const getPopularMovies = async () => {
+    const response = await axios.get(appSetting.POPULAR_MOVIES + '/movie/popular?language=en-US&page=1', options);
+    return response.data.results;
 };
