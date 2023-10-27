@@ -2,23 +2,28 @@ import { useState } from "react";
 import propTypes from "prop-types";
 import { twMerge } from "tailwind-merge";
 import { searchMovieQuery } from "../../../api/seachMovieQuery";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Search = ({ className, btnClassName }) => {
   const [searchBarInput, setSearchBarInput] = useState("");
+  const navigate = useNavigate();
 
   const handleSearchBarInput = (e) => {
     const text = e.target.value;
     setSearchBarInput(text);
   };
 
-  const handleSearchMovie = async () => {
+  const handleSearchMovie = async (e) => {
+    e.preventDefault();
     console.log("Form Submitted");
-  
-    // TODO: navigate to search page using search input content;
-    const seachQuery = await searchMovieQuery(searchBarInput);
-    Navigate('/search', { seachResponse: seachQuery });
-  }
+
+    const searchQuery = await searchMovieQuery(searchBarInput);
+    const searchQueryData = JSON.stringify(searchQuery);
+    // console.log("saw" + searchQueryData);
+    
+    const searchData = JSON.parse(searchQueryData);
+    navigate(`/search?query=${searchBarInput}`, { state: { results: searchData } });
+  };
   
 
   return (

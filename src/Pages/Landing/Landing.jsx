@@ -15,9 +15,6 @@ export const Landing = () => {
 
     getMovies();
   }, []);
-
-
-  console.log(movies);
   return (
     <>
       <Navigation />
