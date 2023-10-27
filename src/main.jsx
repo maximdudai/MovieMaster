@@ -8,11 +8,11 @@ import { Search } from "./Pages/Seach/Seach";
 const router = createBrowserRouter([
   {
     path: "*",
-    element: <div>Not Found</div>
+    element: <div>Not Found</div>,
   },
   {
     path: "/profile",
-    element: <div>Profile</div>
+    element: <div>Profile</div>,
   },
   {
     path: "/",
@@ -24,12 +24,12 @@ const router = createBrowserRouter([
   },
   {
     path: "films",
-    element: <Films />
+    element: <Films />,
   },
   {
     path: "search",
-    element: <Search />
-  }
+    element: <Search />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
