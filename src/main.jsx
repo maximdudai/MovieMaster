@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "./App";
 import { Films } from "./Pages/Films/Films";
 import { Search } from "./Pages/Seach/Seach";
+import { MovieDetails } from "./Pages/Movie/MovieDetails";
 
 const router = createBrowserRouter([
   {
@@ -23,13 +24,17 @@ const router = createBrowserRouter([
     element: <div>About</div>,
   },
   {
-    path: "films",
+    path: "/films",
     element: <Films />,
   },
   {
-    path: "search",
+    path: "/search",
     element: <Search />,
   },
+  {
+    path: "/movie-data",
+    element: <MovieDetails />,
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
