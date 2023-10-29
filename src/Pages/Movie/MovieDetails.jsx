@@ -38,32 +38,36 @@ export const MovieDetails = () => {
 
   useEffect(() => {
     const fetchMovieFullDetails = async () => {
-      const movieId = getNumbersFromString(query);
-
-      const movieData = await searchMovieById(movieId);
-      const movieImages = await getMovieImages(movieId, "backdrop");
-      const movieTrailer = await getMovieTrailer(movieId);
-      const movieListActors = await getListOfActors(movieId);
-
-      setMovieData(movieData);
-      setMovieImages(movieImages);
-      setMovieCast(movieTrailer);
-
-      const concatMovieActors = movieListActors?.cast?.concat(
-        movieListActors?.crew
-      );
-      // Remove duplicate actors
-      const uniqueActors = concatMovieActors?.filter(
-        (actor, index, self) =>
-          index === self.findIndex((a) => a.id === actor.id)
-      );
-      setMovieActors(uniqueActors);
-
-      setIsLoading(false);
+      try {
+        const movieId = getNumbersFromString(query);
+  
+        const [movieData, movieImages, movieTrailer, movieListActors] = await Promise.all([
+          searchMovieById(movieId),
+          getMovieImages(movieId, "backdrop"),
+          getMovieTrailer(movieId),
+          getListOfActors(movieId)
+        ]);
+  
+        setMovieData(movieData);
+        setMovieImages(movieImages);
+        setMovieCast(movieTrailer);
+  
+        const concatMovieActors = movieListActors?.cast?.concat(movieListActors?.crew);
+        const uniqueActors = concatMovieActors?.filter(
+          (actor, index, self) => index === self.findIndex((a) => a.id === actor.id)
+        );
+        setMovieActors(uniqueActors);
+  
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching movie details:', error);
+        setIsLoading(false);
+      }
     };
-
+  
     fetchMovieFullDetails();
   }, [query]);
+  
 
   const handleSelectPosterImage = (e) => {
     const selectedImage = e.target.src;
