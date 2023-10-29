@@ -47,7 +47,7 @@ export const Landing = () => {
 
   const handleMovieFullDetails = () => {
 
-    navigate(`/movie-data?query=${randomMovie?.id}`);
+    navigate(`/movie-data/query=${randomMovie?.id}`);
   }
 
   const handleFullOverview = () => {
