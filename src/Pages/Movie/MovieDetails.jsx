@@ -17,8 +17,6 @@ import { getMovieTrailer } from "../../api/getMovieTrailer";
 import { getListOfActors } from "../../api/getListOfActors";
 import { FilteActors } from "./components/FilterActors";
 
-import _isEqual from "lodash/isEqual";
-
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { departments } from "./data/departments";
@@ -244,12 +242,16 @@ export const MovieDetails = () => {
                 <p className="text-xs p-2 my-2 uppercase border-l border-red-500 text-gray-400">
                   Watch Trailer
                 </p>
-                <div className="reactPlayer">
-                  <ReactPlayer
-                    width={"50%"}
-                    url={MovieTrailer({ movieCast })}
-                    controls
-                  />
+                <div className="reactPlayer w-full md:flex md:justify-center py-3">
+                  <div className="reactPlayerContainer w-full md:w-1/2 lg:w-2/3 lg:h-[30rem]">
+                    <ReactPlayer
+                      width={"100%"}
+                      height={"100%"}
+                      url={MovieTrailer({ movieCast })}
+                      controls
+                    />
+                  </div>
+
                 </div>
               </div>
               <div className="movieListOfActors w-full lg:w-3/4 mt-5">
