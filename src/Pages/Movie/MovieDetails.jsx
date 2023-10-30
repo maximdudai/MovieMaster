@@ -242,12 +242,9 @@ export const MovieDetails = () => {
               </div>
             </div>
             <div className="movieTrailerActorsContainer w-full flex flex-col items-center">
-              <div className="movieTrailer w-full lg:w-3/4">
-                <p className="text-xs p-2 my-2 uppercase border-l border-red-500 text-gray-400">
-                  Watch Trailer
-                </p>
+              <div className="movieTrailer w-full p-2 rounded shadow-md shadow-black bg-white/20">
                 <div className="reactPlayer w-full md:flex md:justify-center py-3">
-                  <div className="reactPlayerContainer w-full md:w-1/2 lg:w-2/3 lg:h-[30rem]">
+                  <div className="reactPlayerContainer w-full md:w-1/2 lg:w-2/3 lg:min-h-[40rem]">
                     <ReactPlayer
                       width={"100%"}
                       height={"100%"}
