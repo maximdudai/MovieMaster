@@ -15,7 +15,6 @@ export const Search = ({ className, btnClassName }) => {
 
   const handleSearchMovie = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted");
 
     const searchQuery = await searchMovieQuery(searchBarInput);
     const searchQueryData = JSON.stringify(searchQuery);
