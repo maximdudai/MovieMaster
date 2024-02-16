@@ -18,9 +18,10 @@ export const getPopularMovies = async () => {
 export const getRandomMovie = async (maxMovies = null) => {
     try {
         let listOfMovie = JSON.parse(sessionStorage.getItem('movies'));
+
         if(!listOfMovie) {
-            const getMovieData = await getPopularMovies();
-            sessionStorage.setItem('movies', JSON.stringify(getMovieData));
+            listOfMovie = await getPopularMovies();
+            sessionStorage.setItem('movies', JSON.stringify(listOfMovie));
         }
 
         let randomMovieList = [];

@@ -17,7 +17,7 @@ export const MobileMenu = () => {
       </button>
 
       {isMobileMenuOpen && (
-        <div className="mobileMenuLinks fixed z-10 left-0 top-32 w-screen h-screen  p-5 bg-[#353535]">
+        <div className="mobileMenuLinks fixed z-10 left-0 top-16 w-screen h-screen  p-5 bg-[#353535]">
             {/* TODO: verify if user logged in */}
             <ProfileMenu className={'flex flex-row-reverse justify-between '} />
         

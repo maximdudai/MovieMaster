@@ -28,7 +28,7 @@ export const PopularMovieList = () => {
     <div className="popularMoviesList p-2 mt-5">
 
       <div className="popularMovieListTitle border-b-2 border-red-500">
-        <h1 className='uppercase text-gray-400 tracking-wider text-sm'>Movies you might like..</h1>
+        <h1 className='uppercase text-gray-400 tracking-wider text-sm md:text-lg lg:text-2xl'>Movies you might like..</h1>
       </div>
 
       <div className="popularMovieListContainer flex flex-wrap gap-2 justify-center items-center">

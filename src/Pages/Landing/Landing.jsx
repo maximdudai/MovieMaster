@@ -1,4 +1,3 @@
-import { Navigation } from "../../Components/Navigation/Navigation";
 import { PopularMovie } from "./components/PopularMovie";
 import { PopularMovieList } from "./components/PopularMovieList";
 
@@ -8,9 +7,7 @@ export const Landing = () => {
 
   return (
     <>
-      <Navigation />
-
-      <div className="container">
+      <div className="container-fluid p-0">
         <PopularMovie />
 
         <PopularMovieList />

@@ -6,6 +6,9 @@ import { Search } from "./Components/Search";
 import { ProfileMenu } from "./Components/ProfileMenu";
 
 export const Navigation = () => {
+
+  console.log(isMobile, isTablet);
+
   return (
     <nav className="w-full p-5 border-b-2 border-red-600 flex justify-center">
       <div className="container flex justify-between items-center">

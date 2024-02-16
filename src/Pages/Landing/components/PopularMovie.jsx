@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { getRandomMovie, getMoviePoster } from "../../../api/movieData";
 
+import './other/style/style.css';
+
+
+//lazy load the popular movie component
+
 export const PopularMovie = () => {
 
   const [moviesList, setMoviesList] = useState([]);
@@ -20,12 +25,15 @@ export const PopularMovie = () => {
   }, []);
   const randomMovieImage = getMoviePoster(moviesList);
 
-  return (
-    <div className="moviePopularRightNow relative rounded w-full 2xl:w-4/5">
-      <div className="movieCardPoster relative inset-0 opacity-25">
-        <img className="rounded" src={randomMovieImage} alt="Movie Card" />
+  return !moviesList ? <div>Loading..</div> : (
+    <div className="moviePopularRightNow relative rounded w-screen h-screen">
+      
+      <div className="movieCardPoster absolute inset-0 bottom-24 -z-10 w-screen">
+        <img className="w-full h-full object-cover" src={randomMovieImage} alt="Movie Card" />
+        <span className="imageEffect absolute z-0 inset-0 bg-gradient-to-b from-slate-900/70 to-slate-500"></span>
       </div>
-      <div className="movieCardData w-full text-center p-2 lg:absolute lg:bottom-0 xl:bottom-0">
+
+      <div className="movieCardData container w-full text-center p-2 lg:absolute lg:bottom-0 xl:bottom-0">
         <div className="movieTitle w-full bg-black/20 text-center shadow-black shadow-sm">
           <h1 className="text-2xl xl:text-5xl font-semibold tracking-widest uppercase text-gray-400">
             {moviesList.title}
