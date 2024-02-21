@@ -1,17 +1,24 @@
 import propTypes from "prop-types";
+import { getMoviePoster } from "../../../../api/movieData";
 
 export const PopularMovieCard = ({ movie }) => {
 
-  console.log(movie);
+
+  const moviePoster = getMoviePoster(movie.poster_path);
 
   return (
-    <div className="PopularMovieCard">
-      <div className="movieCardPoster relative">
+    <div id={`${movie.id}`} className="PopularMovieCard p-2 bg-black/20 mt-5">
+      <div className="movieCardPoster">
         <img
-          className="absolute inset-0"
-          src={movie.poster_path}
+          className=""
+          src={moviePoster}
           alt={movie.title}
         />
+      </div>
+      <div className="movieCardTitle py-1">
+        <h1 className="text-gray-400 uppercase text-sm">
+          {movie.title}
+        </h1>
       </div>
     </div>
   );

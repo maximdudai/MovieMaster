@@ -1,15 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 body {
   background-color: #292929;
-  color: rgb(235, 235, 235)
+  color: rgb(235, 235, 235);
+
+  font-family: 'Roboto Condensed', sans-serif;
+  overflow-x: hidden;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #292929;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #393939;    /* color of the scroll thumb */
+  border-radius: 2px;       /* roundness of the scroll thumb */
+  border: 1px solid gray;  /* creates padding around scroll thumb */
 }

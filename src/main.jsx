@@ -1,10 +1,16 @@
-import { createRoot } from "react-dom/client";
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import { UserDeviceDetection } from "./Context/Device/Device.jsx";
 
 import { App } from "./App";
 import { Films } from "./Pages/Films/Films";
-import { Search } from "./Pages/Seach/Seach";
+import { Search } from "./Pages/Search/Search";
 import { MovieDetails } from "./Pages/Movie/MovieDetails";
+
+import "./main.css";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +26,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "about",
+    path: "/about",
     element: <div>About</div>,
   },
   {
@@ -34,9 +40,13 @@ const router = createBrowserRouter([
   {
     path: "/movie-data/:query",
     element: <MovieDetails />,
-  }
+  },
 ]);
 
-createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <UserDeviceDetection>
+      <RouterProvider router={router} />
+    </UserDeviceDetection>
+  </React.StrictMode>
 );

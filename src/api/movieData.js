@@ -44,9 +44,19 @@ export const getRandomMovie = async (maxMovies = null) => {
         throw error;
     }
 }
-export const getMoviePoster = (movieId) => {
+export const getMovieBackdrop = (backdrop_path) => {
     try {
-        const response = `https://image.tmdb.org/t/p/original/${movieId.backdrop_path}`;
+        const response = `https://image.tmdb.org/t/p/original${backdrop_path}`;
+        return response;
+    } catch (error) {
+        console.error('Error fetching movie image:', error);
+        throw error;
+    }
+};
+
+export const getMoviePoster = (poster_path) => {
+    try {
+        const response = `https://image.tmdb.org/t/p/original${poster_path}`;
         return response;
     } catch (error) {
         console.error('Error fetching movie image:', error);

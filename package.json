@@ -11,15 +11,15 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
-    "@trendyol-js/react-carousel": "^3.0.2",
     "axios": "^1.5.1",
     "react": "^18.2.0",
-    "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-player": "^2.13.0",
     "react-router-dom": "^6.11.2",
     "react-select": "^5.7.7",
+    "sass": "^1.71.0",
+    "swiper": "^11.0.6",
     "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {

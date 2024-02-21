@@ -36,7 +36,7 @@ export const Search = ({ className, btnClassName }) => {
         type="text"
         name="searchBarInput"
         id="searchBarInput"
-        placeholder="Search movie..."
+        placeholder="Search for movies or TV Shows"
       />
       <button
         type="submit"

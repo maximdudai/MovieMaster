@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getRandomMovie, getMoviePoster } from "../../../api/movieData";
+import { getRandomMovie, getMovieBackdrop } from "../../../api/movieData";
 
 import './other/style/style.css';
 
@@ -23,17 +23,17 @@ export const PopularMovie = () => {
 
     fetchMovies();
   }, []);
-  const randomMovieImage = getMoviePoster(moviesList);
+  const randomMovieImage = getMovieBackdrop(moviesList.backdrop_path);
 
-  return !moviesList ? <div>Loading..</div> : (
-    <div className="moviePopularRightNow relative rounded w-screen h-screen">
+  return (
+    <div className="moviePopularRightNow overflow-y-hidden relative rounded w-full lg:w-screen">
       
-      <div className="movieCardPoster absolute inset-0 bottom-24 -z-10 w-screen">
-        <img className="w-full h-full object-cover" src={randomMovieImage} alt="Movie Card" />
+      <div className="movieCardPoster relative w-full h-[90vh] -z-10">
+        <img className="absolute object-cover w-full h-full" src={randomMovieImage} alt="Movie Card" />
         <span className="imageEffect absolute z-0 inset-0 bg-gradient-to-b from-slate-900/70 to-slate-500"></span>
       </div>
 
-      <div className="movieCardData container w-full text-center p-2 lg:absolute lg:bottom-0 xl:bottom-0">
+      <div className="movieCardData px-3 w-full text-center lg:absolute lg:bottom-0">
         <div className="movieTitle w-full bg-black/20 text-center shadow-black shadow-sm">
           <h1 className="text-2xl xl:text-5xl font-semibold tracking-widest uppercase text-gray-400">
             {moviesList.title}
