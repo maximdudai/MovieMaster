@@ -37,8 +37,9 @@ export const Footer = () => {
   return (
     <footer className="container-fluid w-full flex flex-col justify-center items-center">
       <div className="footerNewsletter relative w-full h-48 flex justify-center items-center">
-        <span className="imageEffect w-full h-full absolute -z-10 inset-0 bg-gradient-to-b from-slate-900/70 to-slate-500"></span>
-        <imgs
+
+        <span className="imageEffect w-full h-full absolute z-10 inset-0 bg-gradient-to-b from-slate-900/70 to-slate-500"></span>
+        <img
           className="w-full h-full absolute inset-0 -z-10 object-cover"
           src="https://wallpapers.com/images/hd/best-fast-and-furious-background-3514-x-1977-snf7rpgrb2i4r4fx.jpg"
           alt="Footer Image"
@@ -72,12 +73,12 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="footerContainer w-full flex flex-col md:flex-row justify-center items-center p-1 mt-3">
-        <div className="movieMasterLogo w-full md:min-w-96">
+      <div className="footerContainer container flex flex-col md:flex-row items-center mt-3 py-10">
+        <div className="movieMasterLogo ">
           <MovieMasterLogo mainDivClass={"text-center"} />
         </div>
 
-        <div className="socialNetwork my-3 flex items-center">
+        <div className="socialNetwork my-3 w-full flex justify-end items-center">
           <div className="socialNetworkTitle pr-12 text-nowrap">
             <h3 className="text-gray-400 text-sm uppercase">social network</h3>
           </div>
@@ -114,8 +115,6 @@ export const Footer = () => {
             (+123) 456 7890
           </Link>
         </div>
-
-
       </div>
     </footer>
   );
