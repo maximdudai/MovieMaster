@@ -2,11 +2,14 @@ import propTypes from "prop-types";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'sonner';
 
 import { getActorBackdrop, getActorDetails } from "../../../../api/actorData";
+import { getMovieBackdrop } from "../../../../api/movieData";
+import { addMovieToFavorites } from '../../../../api/favorites';
+
 
 import { CiStar } from "react-icons/ci";
-import { getMovieBackdrop } from "../../../../api/movieData";
 
 export const Card = ({ type = "movie", data }) => {
   const [actorData, setActorData] = useState([]);
@@ -37,6 +40,17 @@ export const Card = ({ type = "movie", data }) => {
     }
   };
 
+  // add movie/actor to favorites
+  const handleItemToFavorites = (e) => {
+    e.stopPropagation();
+    // Add to favorites
+    const addedToFavorites = addMovieToFavorites(data.id);
+    if(addedToFavorites)
+      toast.success('Added to favorites');
+    else
+      toast.error('Removed from favorites');
+  };
+
   const actorPoster =
     type === "movie"
       ? getMovieBackdrop(data.backdrop_path)
@@ -56,7 +70,7 @@ export const Card = ({ type = "movie", data }) => {
           <div className="movieCardData my-1 flex justify-between items-center">
             <p className="text-xs">{data?.release_date}</p>
             <p className="text-gray-400 text-xs flex items-center">
-              <span className="starIcon text-lg">
+              <span className="starIcon text-lg" onClick={handleItemToFavorites}>
                 <CiStar className="mx-1 hover:text-red-500" />
               </span>
               <span className="votesCount text-gray">
