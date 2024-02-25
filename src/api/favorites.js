@@ -25,3 +25,10 @@ export const removeMovieFromFavorites = (movieId) => {
   return updatedList;
 }
 
+export const isMovieInFavorites = (movieId) => {
+  const moviesList = JSON.parse(localStorage.getItem('favoriteMovies')) || [];
+
+  const isMovieListed = moviesList.some((movie) => movie.id === movieId);
+
+  return isMovieListed;
+}
