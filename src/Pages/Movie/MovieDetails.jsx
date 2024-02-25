@@ -8,7 +8,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { Navigation } from "../../Components/Navigation/Navigation";
 import { searchMovieById } from "../../api/searchMovieById";
-import { getMovieImages } from "../../api/getMovieImages";
+import { getPictures } from "../../api/getPictures";
 
 import { getNumbersFromString } from "../../utils/utils";
 import { convertMinutesToHours } from "../../utils/utils";
@@ -43,7 +43,7 @@ export const MovieDetails = () => {
   
         const [movieData, movieImages, movieTrailer, movieListActors] = await Promise.all([
           searchMovieById(movieId),
-          getMovieImages(movieId, "backdrop"),
+          getPictures(movieId, "backdrop"),
           getMovieTrailer(movieId),
           getListOfActors(movieId)
         ]);

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { appSetting } from './settings/settings';
 
-export const getMovieImages = async (id, type = "backdrop") => {
+export const getPictures = async (id, image_type = "backdrop", req_type = "movie") => {
   try {
-    const response = await axios.get(`${appSetting.DEFAULT_URL}/movie/${id}/images`, appSetting.API_OPTIONS);
+    const response = await axios.get(`${appSetting.DEFAULT_URL}/${req_type}/${id}/images`, appSetting.API_OPTIONS);
 
-    switch(type) {
+    switch(image_type) {
       case "backdrop":
         return response.data.backdrops;
       case "poster":

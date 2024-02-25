@@ -5,7 +5,7 @@ import { appSetting } from './settings/settings';
 
 export const getPopularMovies = async () => {
     try {
-        const response = await axios.get(appSetting.POPULAR_MOVIES + '/movie/popular?language=en-US&page=1', appSetting.API_OPTIONS);
+    const response = await axios.get(appSetting.POPULAR_MOVIES, appSetting.API_OPTIONS);
         return response.data.results;
         
     } catch (error) {
@@ -27,7 +27,13 @@ export const getRandomMovie = async (maxMovies = null) => {
         let randomMovieList = [];
 
         if(!maxMovies) {
-            const randomFromMovieList = Math.floor(Math.random() * listOfMovie.length);
+            let randomFromMovieList = Math.floor(Math.random() * listOfMovie.length);
+
+            do {
+                randomFromMovieList = Math.floor(Math.random() * listOfMovie.length);
+            }
+            while(randomMovieList.includes(listOfMovie[randomFromMovieList]));
+
             randomMovieList = listOfMovie[randomFromMovieList];
         }
         

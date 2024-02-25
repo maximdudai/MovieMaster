@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getRandomMovie } from "../../../api/movieData";
+import { getPopularPeople } from "../../../api/actorData";
 import { Card } from "./other/Card";
 
 import { PiTrendUpThin } from "react-icons/pi";
@@ -14,27 +14,27 @@ register();
 
 import "swiper/css";
 
-export const PopularMovieList = () => {
-  const [moviesList, setMoviesList] = useState([]);
+export const PopularPeople = () => {
+  const [actorList, setActorList] = useState([]);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchActors = async () => {
       try {
-        const fetchedMovies = await getRandomMovie(10);
-        setMoviesList(fetchedMovies);
+        const actorsResult = await getPopularPeople();
+        setActorList(actorsResult);
       } catch (error) {
-        console.error("Error fetching movies:", error);
+        console.error("Error fetching actors:", error);
       }
     };
 
-    fetchMovies();
+    fetchActors();
   }, []);
 
   return (
     <div className="popularMoviesList p-2 mt-5 flex flex-col items-center">
       <div className="container-fluid lg:container w-full flex items-center border-b-2 border-red-500">
         <h1 className="uppercase p-2 md:p-0 text-gray-400 tracking-wider text-sm md:text-lg lg:text-2xl">
-          Popular Movies
+          Popular Actors
         </h1>
         <div className="text-red-500 text-2xl p-2 m-2 bg-slate-600/30 rounded-lg">
           <PiTrendUpThin />
@@ -51,9 +51,9 @@ export const PopularMovieList = () => {
           }}
           modules={[Autoplay]}
         >
-          {moviesList.map((movie, index) => (
+          {actorList.map((actor, index) => (
             <SwiperSlide key={index}>
-              <Card type="movie" data={movie} />
+              <Card type="actor" data={actor} />
             </SwiperSlide>
           ))}
         </Swiper>

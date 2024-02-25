@@ -26,7 +26,7 @@ export const PopularMovie = () => {
   const randomMovieImage = getMovieBackdrop(moviesList.backdrop_path);
 
   return (
-    <div className="moviePopularRightNow overflow-y-hidden relative rounded w-full lg:w-screen">
+    <div className="moviePopularRightNow overflow-y-hidden relative rounded w-full lg:w-screen shadow-b-black shadow-lg">
       
       <div className="movieCardPoster relative w-full h-[90vh] -z-10">
         <img className="absolute object-cover w-full h-full" src={randomMovieImage} alt="Movie Card" />

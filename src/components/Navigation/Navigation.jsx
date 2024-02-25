@@ -14,9 +14,6 @@ export const Navigation = () => {
   const handleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }
-
-  console.log(device);
-
   return (
     <nav className={`w-full p-5 border-b-2 border-red-600 flex justify-center`}>
       <div className="container flex justify-between items-center">
