@@ -4,11 +4,11 @@ import { Card } from "./other/Card";
 
 import { PiTrendUpThin } from "react-icons/pi";
 
-import { register } from 'swiper/element';
-import { Autoplay } from 'swiper/modules';
+import { register } from "swiper/element";
+import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { swiperSettings } from './other/settings/swiperSettings';
+import { swiperSettings } from "./other/settings/swiperSettings";
 
 register();
 
@@ -32,13 +32,14 @@ export const PopularMovieList = () => {
 
   return (
     <div className="popularMoviesList p-2 mt-5 flex flex-col items-center">
-      <div className="container-fluid lg:container w-full flex items-center border-b-2 border-red-500">
-        <h1 className="uppercase p-2 md:p-0 text-gray-400 tracking-wider text-sm md:text-lg lg:text-2xl">
+      <div className="container-fluid lg:container md:px-4 w-full flex items-center">
+        <h3 className="uppercase p-2 md:p-0 text-gray-400 text-nowrap tracking-wider text-sm md:text-lg lg:text-2xl">
           Popular Movies
-        </h1>
+        </h3>
         <div className="text-red-500 text-2xl p-2 m-2 bg-slate-600/30 rounded-lg">
           <PiTrendUpThin />
         </div>
+        <div className="lineBreak relative w-full h-[1px] bg-gradient-to-l from-red-500/10 to-red-500"></div>
       </div>
 
       <div className="popularMovieList flex flex-wrap gap-2 justify-center items-center">

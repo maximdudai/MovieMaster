@@ -55,11 +55,6 @@ export const Card = ({ type = "movie", data }) => {
     setIsFavorite(addedToFavorites);
   };
 
-  const checkIfInFavorites = (movieId) => {
-    const isFavorite = isMovieInFavorites(movieId);
-    return isFavorite;
-  }
-
   const actorPoster =
     type === "movie"
       ? getMovieBackdrop(data.backdrop_path)

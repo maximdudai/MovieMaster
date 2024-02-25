@@ -4,6 +4,7 @@ import { Navigation } from './Components/Navigation/Navigation';
 import { Toaster } from 'sonner';
 
 import './App.css'
+import { Footer } from "./Components/Footer/Footer";
 
 export const App = () => {
   return (
@@ -14,6 +15,8 @@ export const App = () => {
       <Landing />
       <Toaster />
     </main>
+
+    <Footer />
     </>
 
   )

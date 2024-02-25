@@ -1,3 +1,5 @@
+'use strict'
+
 import appSettings from './settings.json';
 
 const options = {

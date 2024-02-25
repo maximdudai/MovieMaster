@@ -1,9 +1,9 @@
+'use strict'
+
 export const addMovieToFavorites = (movieId) => {
   const moviesList = JSON.parse(localStorage.getItem('favoriteMovies')) || [];
 
   const isMovieListed = moviesList.some((movie) => movie.id === movieId);
-
-  console.log(isMovieListed);
 
   if(!isMovieListed) {
     moviesList.push({ id: movieId });
