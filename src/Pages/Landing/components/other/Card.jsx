@@ -70,6 +70,7 @@ export const Card = ({ type = "movie", data }) => {
         <div className="movieCardTitle">
           <h3 className="uppercase text-sm text-wrap">{title}</h3>
         </div>
+        
         {type === "movie" ? (
           <div className="movieCardData my-1 flex justify-between items-center">
             <p className="text-xs">{data?.release_date}</p>
@@ -84,7 +85,9 @@ export const Card = ({ type = "movie", data }) => {
           </div>
         ) : (
           <div className="actorCardData my-1 flex justify-between items-center">
-            <p className="text-xs text-gray-400">{actorData?.birthday}</p>
+            <p className="text-xs text-gray-400">
+              {actorData?.birthday} {actorData?.deathday ? ` - ${actorData?.deathday}` : ""}
+            </p>
           </div>
         )}
       </div>

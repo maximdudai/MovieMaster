@@ -221,7 +221,7 @@ export const MovieDetails = () => {
                               key={index}
                               className="bg-white/5 flex flex-col justify-between min-h-[5rem] gap-3 text-center p-2 rounded text-xs"
                             >
-                              <div className="companyLogo">
+                              <div className="companyLogo min-h-20 flex items-center">
                                 <img
                                   className="w-32"
                                   src={companyLogo(company?.logo_path)}

@@ -78,18 +78,18 @@ export const Footer = () => {
           <MovieMasterLogo mainDivClass={"text-center"} />
         </div>
 
-        <div className="socialNetwork my-3 w-full flex justify-end items-center">
-          <div className="socialNetworkTitle pr-12 text-nowrap">
+        <div className="socialNetwork my-3 w-full flex justify-evenly md:justify-end items-center">
+          <div className="socialNetworkTitle md:pr-12 text-nowrap">
             <h3 className="text-gray-400 text-sm uppercase">social network</h3>
           </div>
           <div className="socialNetworkLinks flex">
-            <Link to="/" className="text-white mx-2 hover:text-red-500">
+            <Link to="/" className="text-white text-2xl mx-2 hover:text-red-500">
               <CiFacebook />
             </Link>
-            <Link to="/" className="text-white mx-2 hover:text-red-500">
+            <Link to="/" className="text-white text-2xl mx-2 hover:text-red-500">
               <CiInstagram />
             </Link>
-            <Link to="/" className="text-white mx-2 hover:text-red-500">
+            <Link to="/" className="text-white text-2xl mx-2 hover:text-red-500">
               <CiTwitter />
             </Link>
           </div>
@@ -107,7 +107,7 @@ export const Footer = () => {
           </Link>
         </div>
 
-        <div className="footerContact w-full flex items-center justify-evenly md:justify-end text-sm">
+        <div className="footerContact w-full my-3 flex items-center justify-evenly md:justify-end text-sm">
           <Link to="mailto:invalidmail@gmail.com" className="text-gray-400 hover:text-red-500 mx-2">
             moviemaster@info.com
           </Link>
