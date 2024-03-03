@@ -1,7 +1,7 @@
 'use strict'
 
 import axios from 'axios';
-import { appSetting } from './settings/settings';
+import { appSetting } from '../settings/settings';
 
 export const getPopularMovies = async () => {
     try {

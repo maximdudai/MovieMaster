@@ -1,7 +1,7 @@
 import { useState } from "react";
 import propTypes from "prop-types";
+
 import { twMerge } from "tailwind-merge";
-import { searchMovieQuery } from "../../../api/seachMovieQuery";
 import { useNavigate } from "react-router-dom";
 
 export const Search = ({ className, btnClassName }) => {
@@ -16,12 +16,7 @@ export const Search = ({ className, btnClassName }) => {
   const handleSearchMovie = async (e) => {
     e.preventDefault();
 
-    const searchQuery = await searchMovieQuery(searchBarInput);
-    const searchQueryData = JSON.stringify(searchQuery);
-    // console.log("saw" + searchQueryData);
-    
-    const searchData = JSON.parse(searchQueryData);
-    navigate(`/search?query=${searchBarInput}`, { state: { results: searchData } });
+    navigate(`/search/query=${searchBarInput}`, { replace: true });
   };
   
 
@@ -36,7 +31,7 @@ export const Search = ({ className, btnClassName }) => {
         type="text"
         name="searchBarInput"
         id="searchBarInput"
-        placeholder="Search for movies or TV Shows"
+        placeholder="Search Movies, TV Shows or Actors"
       />
       <button
         type="submit"

@@ -2,21 +2,24 @@ import propTypes from "prop-types";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 
-import { getActorBackdrop, getActorDetails } from "../../../../api/actorData";
-import { getMovieBackdrop } from "../../../../api/movieData";
-import { addMovieToFavorites, isMovieInFavorites } from '../../../../api/favorites';
+import { getActorBackdrop, getActorDetails } from "../../api/actor/actorData";
+import { getMovieBackdrop } from "../../api/movie/movieData";
+
+
+import {
+  addMovieToFavorites,
+  isMovieInFavorites,
+} from "../../api/favorites";
 
 import { CiStar } from "react-icons/ci";
 
 export const Card = ({ type = "movie", data }) => {
-  const [actorData, setActorData] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(
-    isMovieInFavorites(data.id)
-  );
-  const navigate = useNavigate();
 
+  const [actorData, setActorData] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(isMovieInFavorites(data.id));
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchActors = async () => {
@@ -25,21 +28,15 @@ export const Card = ({ type = "movie", data }) => {
         setActorData(actorsResult);
       } catch (error) {
         // Handle errors
-        console.error('Error fetching actor details:', error);
+        console.error("Error fetching actor details:", error);
       }
-    }
+    };
 
-    if(type === "actor")
-      fetchActors();
+    if (type === "actor") fetchActors();
   }, [data.id, type]);
 
-  const handleMovieData = (actorID) => {
-
-    if(type === "actor") {
-      // Navigate to actor details page
-    } else if(type === "movie"){
-      navigate(`/movie-data/${actorID}`, { replace: true });
-    }
+  const handleMovieData = (dataID) => {
+    navigate(`/movie-data/${type}/${dataID}`, { replace: true });
   };
 
   // add movie/actor to favorites
@@ -47,10 +44,8 @@ export const Card = ({ type = "movie", data }) => {
     e.stopPropagation();
     // Add to favorites
     const addedToFavorites = addMovieToFavorites(data.id);
-    if(addedToFavorites)
-      toast.success('Added to favorites');
-    else
-      toast.error('Removed from favorites');
+    if (addedToFavorites) toast.success("Added to favorites");
+    else toast.error("Removed from favorites");
 
     setIsFavorite(addedToFavorites);
   };
@@ -62,7 +57,11 @@ export const Card = ({ type = "movie", data }) => {
   const title = type === "movie" ? data.title : data.name;
 
   return (
-    <div id={`${data.id}`} className="PopularMovieCard m-5 cursor-pointer" onClick={() => handleMovieData(data.id)}>
+    <div
+      id={`${data.id}`}
+      className="PopularMovieCard m-5 cursor-pointer"
+      onClick={() => handleMovieData(data.id)}
+    >
       <div className="movieCardPoster">
         <img className="w-auto rounded-xl" src={actorPoster} alt={title} />
       </div>
@@ -70,13 +69,22 @@ export const Card = ({ type = "movie", data }) => {
         <div className="movieCardTitle">
           <h3 className="uppercase text-sm text-wrap">{title}</h3>
         </div>
-        
+
         {type === "movie" ? (
           <div className="movieCardData my-1 flex justify-between items-center">
             <p className="text-xs">{data?.release_date}</p>
             <p className="text-gray-400 text-xs flex items-center">
-              <span className="starIcon text-lg" onClick={handleItemToFavorites}>
-                <CiStar className={`mx-1 ${isFavorite ? 'text-red-500' : 'text-gray-400 hover:text-yellow-400'}`} />
+              <span
+                className="starIcon text-lg"
+                onClick={handleItemToFavorites}
+              >
+                <CiStar
+                  className={`mx-1 ${
+                    isFavorite
+                      ? "text-red-500"
+                      : "text-gray-400 hover:text-yellow-400"
+                  }`}
+                />
               </span>
               <span className="votesCount text-gray">
                 {data?.vote_average?.toFixed(1)}
@@ -86,7 +94,8 @@ export const Card = ({ type = "movie", data }) => {
         ) : (
           <div className="actorCardData my-1 flex justify-between items-center">
             <p className="text-xs text-gray-400">
-              {actorData?.birthday} {actorData?.deathday ? ` - ${actorData?.deathday}` : ""}
+              {actorData?.birthday}{" "}
+              {actorData?.deathday ? ` - ${actorData?.deathday}` : ""}
             </p>
           </div>
         )}

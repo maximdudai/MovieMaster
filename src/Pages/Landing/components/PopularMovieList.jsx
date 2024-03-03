@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getRandomMovie } from "../../../api/movieData";
-import { Card } from "./other/Card";
+import { getRandomMovie } from "../../../api/movie/movieData";
+import { Card } from "../../../Components/Card/Card";
 
 import { PiTrendUpThin } from "react-icons/pi";
 

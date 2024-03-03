@@ -34,11 +34,11 @@ const router = createBrowserRouter([
     element: <Films />,
   },
   {
-    path: "/search",
+    path: "/search/:query",
     element: <Search />,
   },
   {
-    path: "/movie-data/:query",
+    path: "/movie-data/:type/:query",
     element: <MovieDetails />,
   },
 ]);

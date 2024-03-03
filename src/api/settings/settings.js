@@ -17,4 +17,5 @@ export const appSetting = {
   POPULAR_PEOPLE: appSettings.URL.POPULAR_PEOPLE,
   PEOPLE: appSettings.URL.PEOPLE,
   API_KEY: appSettings.API_KEY,
+  SEARCH: appSettings.URL.SEARCH,
 };

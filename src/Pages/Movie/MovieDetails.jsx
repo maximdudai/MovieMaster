@@ -7,14 +7,14 @@ import { GrGallery } from "react-icons/gr";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { Navigation } from "../../Components/Navigation/Navigation";
-import { searchMovieById } from "../../api/searchMovieById";
+import { searchMovieById } from "../../api/movie/searchMovieById";
 import { getPictures } from "../../api/getPictures";
 
 import { getNumbersFromString } from "../../utils/utils";
 import { convertMinutesToHours } from "../../utils/utils";
 
-import { getMovieTrailer } from "../../api/getMovieTrailer";
-import { getListOfActors } from "../../api/getListOfActors";
+import { getMovieTrailer } from "../../api/movie/getMovieTrailer";
+import { getListOfActors } from "../../api/actor/getListOfActors";
 import { FilteActors } from "./components/FilterActors";
 
 import Select from "react-select";
@@ -221,7 +221,7 @@ export const MovieDetails = () => {
                               key={index}
                               className="bg-white/5 flex flex-col justify-between min-h-[5rem] gap-3 text-center p-2 rounded text-xs"
                             >
-                              <div className="companyLogo min-h-20 flex items-center">
+                              <div className="companyLogo md:min-h-28 flex items-center">
                                 <img
                                   className="w-32"
                                   src={companyLogo(company?.logo_path)}

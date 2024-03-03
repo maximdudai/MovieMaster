@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
-import { getRandomMovie, getMovieBackdrop } from "../../../api/movieData";
+import { getRandomMovie, getMovieBackdrop } from "../../../api/movie/movieData";
 
-import './other/style/style.css';
-
-
-//lazy load the popular movie component
 
 export const PopularMovie = () => {
 

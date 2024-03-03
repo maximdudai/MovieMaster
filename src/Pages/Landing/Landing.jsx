@@ -2,8 +2,6 @@ import { PopularMovie } from "./components/PopularMovie";
 import { PopularMovieList } from "./components/PopularMovieList";
 import { PopularPeople } from "./components/PopularPeople";
 
-import './components/other/style/style.scss';
-
 export const Landing = () => {
 
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getPopularPeople } from "../../../api/actorData";
-import { Card } from "./other/Card";
+import { getPopularPeople } from "../../../api/actor/actorData";
+import { Card } from "../../../Components/Card/Card";
 
 import { PiTrendUpThin } from "react-icons/pi";
 

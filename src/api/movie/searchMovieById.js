@@ -1,7 +1,7 @@
 'use strict'
 
 import axios from 'axios';
-import { appSetting } from './settings/settings';
+import { appSetting } from '../settings/settings';
 
 export const searchMovieById = async (id, lang = "en-US") => {
     try {
