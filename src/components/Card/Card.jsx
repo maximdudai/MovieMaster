@@ -14,6 +14,7 @@ import {
 } from "../../api/favorites";
 
 import { CiStar } from "react-icons/ci";
+import { isImageAvailable } from "../../utils/utils";
 
 export const Card = ({ type = "movie", data }) => {
 
@@ -54,6 +55,7 @@ export const Card = ({ type = "movie", data }) => {
     type === "movie"
       ? getMovieBackdrop(data.backdrop_path)
       : getActorBackdrop(data.profile_path);
+      
   const title = type === "movie" ? data.title : data.name;
 
   return (
@@ -63,7 +65,7 @@ export const Card = ({ type = "movie", data }) => {
       onClick={() => handleMovieData(data.id)}
     >
       <div className="movieCardPoster">
-        <img className="w-auto rounded-xl" src={actorPoster} alt={title} />
+        <img className="w-auto rounded-xl" src={isImageAvailable(actorPoster)} alt={title} />
       </div>
       <div className="movieCardDetails py-1">
         <div className="movieCardTitle">

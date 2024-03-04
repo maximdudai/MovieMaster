@@ -11,13 +11,14 @@ export const UserDeviceDetection = ({ children }) => {
       const userAgent = navigator.userAgent.toLowerCase();
       const isMobile = /iphone|ipad|ipod|android|blackberry|windows phone/g.test(userAgent);
       const isTablet = /(ipad|tablet|playbook|silk)|(android(?!.*mobile))/g.test(userAgent);
+      const isLaptop = /windows nt|macintosh|linux/g.test(userAgent);
 
 
       if (isMobile) {
         setDevice('mobile');
       } else if (isTablet) {
         setDevice('tablet');
-      } else {
+      } else if (isLaptop) {
         setDevice('desktop');
       }
     };

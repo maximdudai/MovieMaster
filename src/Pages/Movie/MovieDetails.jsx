@@ -10,7 +10,7 @@ import { Navigation } from "../../Components/Navigation/Navigation";
 import { searchMovieById } from "../../api/movie/searchMovieById";
 import { getPictures } from "../../api/getPictures";
 
-import { getNumbersFromString } from "../../utils/utils";
+import { getNumbersFromString, isImageAvailable } from "../../utils/utils";
 import { convertMinutesToHours } from "../../utils/utils";
 
 import { getMovieTrailer } from "../../api/movie/getMovieTrailer";
@@ -85,11 +85,6 @@ export const MovieDetails = () => {
 
     return shuffledImages.slice(0, numImages);
   };
-
-  const companyLogo = (company) =>
-    company !== null
-      ? `https://image.tmdb.org/t/p/original/${company}`
-      : `https://static-00.iconduck.com/assets.00/404-page-not-found-illustration-2048x998-yjzeuy4v.png`;
 
   const handleSelectChange = (selected) => {
     setFilters(selected);
@@ -200,7 +195,7 @@ export const MovieDetails = () => {
                     <div className="movieRevenueList flex flex-wrap gap-2">
                       <span className="bg-white/5 p-2 rounded text-xs">
                         $
-                        {movieData?.revenue.toLocaleString("en-US", {
+                        {movieData?.revenue?.toLocaleString("en-US", {
                           formatMatcher: "basic",
                         })}
                       </span>
@@ -224,7 +219,7 @@ export const MovieDetails = () => {
                               <div className="companyLogo md:min-h-28 flex items-center">
                                 <img
                                   className="w-32"
-                                  src={companyLogo(company?.logo_path)}
+                                  src={isImageAvailable(company?.logo_path)}
                                   alt="Company Logo"
                                 />
                               </div>
