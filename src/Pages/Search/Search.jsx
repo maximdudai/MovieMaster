@@ -12,9 +12,8 @@ import { LineBreak } from "../../Components/LineBreak/LineBreak";
 
 import { RiMenuSearchLine } from "react-icons/ri";
 
-import { LuPanelLeftOpen, LuPanelLeftClose } from "react-icons/lu";
-
-
+import { LuPanelLeftClose } from "react-icons/lu";
+import { Loading } from "../Components/Loading";
 
 export const Search = () => {
   const [searchData, setSearchData] = useState([]);
@@ -72,54 +71,59 @@ export const Search = () => {
 
         <header className="container border-b-2 border-gray-400/20">
           <div className="containerTitle my-1 flex justify-end items-center">
-            <h1 className="text-right p-3 uppercase text-gray-500 text-[12px]">Search Results</h1>
+            <h1 className="text-right p-3 uppercase text-gray-500 text-[12px]">
+              Search Results
+            </h1>
 
             <div className="searchElements flex items-center bg-black/20 p-2 rounded-md">
               <span className="mx-2">{getQueryParamsFromUrl(query)}</span>
-              <RiMenuSearchLine/>
+              <RiMenuSearchLine />
             </div>
           </div>
         </header>
+        {!searchData.length ? (
+          <Loading />
+        ) : (
+          <div className="container">
+            <div className="movieList">
+              <ul className="w-full flex flex-wrap">
+                {dataType.movie.map((data, index) => (
+                  <li className="w-96" key={index}>
+                    <Card type="movie" data={data} />
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-        <div className="container">
-          <div className="movieList">
-            <ul className="w-full flex flex-wrap">
-              {dataType.movie.map((data, index) => (
-                <li className="w-96" key={index}>
-                  <Card type="movie" data={data} />
-                </li>
-              ))}
-            </ul>
+            {dataType.tv.length > 0 && (
+              <LineBreak title="TV Shows" className={"my-2"} />
+            )}
+
+            <div className="tvShowList">
+              <ul className="w-full flex flex-wrap">
+                {dataType.tv.map((data, index) => (
+                  <li className="w-96" key={index}>
+                    <Card type="tv" data={data} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {dataType.person.length > 0 && (
+              <LineBreak title="Actors" className={"my-2"} />
+            )}
+
+            <div className="actorList">
+              <ul className="w-full flex flex-wrap">
+                {dataType.person.map((data, index) => (
+                  <li className="w-96" key={index}>
+                    <Card type="actor" data={data} />
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-
-          {dataType.tv.length > 0 && (
-            <LineBreak title="TV Shows" className={"my-2"} />
-          )}
-
-          <div className="tvShowList">
-            <ul className="w-full flex flex-wrap">
-              {dataType.tv.map((data, index) => (
-                <li className="w-96" key={index}>
-                  <Card type="movie" data={data} />
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {dataType.person.length > 0 && (
-            <LineBreak title="Actors" className={"my-2"} />
-          )}
-
-          <div className="actorList">
-            <ul className="w-full flex flex-wrap">
-              {dataType.person.map((data, index) => (
-                <li className="w-96" key={index}>
-                  <Card type="actor" data={data} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        )}
       </main>
       <Footer />
     </>

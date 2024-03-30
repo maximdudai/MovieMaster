@@ -14,3 +14,8 @@ export const isImageAvailable = (image) => {
     ? "https://static-00.iconduck.com/assets.00/404-page-not-found-illustration-2048x998-yjzeuy4v.png"
     : image;
 }
+
+export const getGender = (gender) => {
+  const genders = ['Not Specified', 'Female', 'Male', 'Non-Binary'];
+  return genders[gender];
+}

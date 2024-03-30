@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 
 import { GrGallery } from "react-icons/gr";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { Navigation } from "../../Components/Navigation/Navigation";
 import { searchMovieById } from "../../api/movie/searchMovieById";
@@ -20,13 +19,13 @@ import { FilteActors } from "./components/FilterActors";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { departments } from "./data/departments";
+import { Loading } from "../Components/Loading";
 const animatedComponents = makeAnimated();
 
 const MovieTrailer = ({ movieCast }) =>
   "https://www.youtube.com/watch?v=" + movieCast;
 
 export const MovieDetails = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [movieData, setMovieData] = useState([]);
   const [movieImages, setMovieImages] = useState([]);
   const [selectedPosterImage, setSelectedPosterImage] = useState("");
@@ -58,10 +57,8 @@ export const MovieDetails = () => {
         );
         setMovieActors(uniqueActors);
   
-        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching movie details:', error);
-        setIsLoading(false);
       }
     };
   
@@ -95,13 +92,8 @@ export const MovieDetails = () => {
       <Navigation />
 
       <main className="p-5">
-        {isLoading ? (
-          <div className="loadingMovieData flex items-center justify-center bg-white/5 p-5 m-2 rounded">
-            <span className="px-2">Loading</span>
-            <span className="animate-spin px-2">
-              <AiOutlineLoading3Quarters />
-            </span>
-          </div>
+        {!movieData.length ? (
+          <Loading />
         ) : (
           <div className="movieDataContainer flex flex-col">
             <div className="movieFullDetails my-5 flex flex-col lg:flex-row gap-2">

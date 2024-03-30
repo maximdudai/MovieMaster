@@ -7,17 +7,12 @@ import { toast } from "sonner";
 import { getActorBackdrop, getActorDetails } from "../../api/actor/actorData";
 import { getMovieBackdrop } from "../../api/movie/movieData";
 
-
-import {
-  addMovieToFavorites,
-  isMovieInFavorites,
-} from "../../api/favorites";
+import { addMovieToFavorites, isMovieInFavorites } from "../../api/favorites";
 
 import { CiStar } from "react-icons/ci";
 import { isImageAvailable } from "../../utils/utils";
 
 export const Card = ({ type = "movie", data }) => {
-
   const [actorData, setActorData] = useState([]);
   const [isFavorite, setIsFavorite] = useState(isMovieInFavorites(data.id));
   const navigate = useNavigate();
@@ -36,49 +31,59 @@ export const Card = ({ type = "movie", data }) => {
     if (type === "actor") fetchActors();
   }, [data.id, type]);
 
-  const handleMovieData = (dataID) => {
-    navigate(`/movie-data/${type}/${dataID}`, { replace: true });
+  const handleItemData = (dataID) => {
+    if(type === "actor")
+      navigate(`/actor-data/${dataID}`, { replace: true });
+
+    else if(type === "tv" || type === "movie") {
+      navigate(`/movie-data/${type}/${dataID}`, { replace: true });
+    }
   };
 
   // add movie/actor to favorites
-  const handleItemToFavorites = (e) => {
-    e.stopPropagation();
+  const handleItemToFavorites = (title, movieid) => {
     // Add to favorites
     const addedToFavorites = addMovieToFavorites(data.id);
-    if (addedToFavorites) toast.success("Added to favorites");
-    else toast.error("Removed from favorites");
+    toast.message(`Movie ${addedToFavorites ? 'added to' : 'removed from'} favorites`, {
+      description: `${title} (#${movieid})`,
+    });
 
     setIsFavorite(addedToFavorites);
   };
 
   const actorPoster =
-    type === "movie"
+    type === "movie" || type === "tv"
       ? getMovieBackdrop(data.backdrop_path)
       : getActorBackdrop(data.profile_path);
-      
-  const title = type === "movie" ? data.title : data.name;
+
+  const title = type === "actor" || type === "tv" ? data.name : data.title;
 
   return (
-    <div
-      id={`${data.id}`}
-      className="PopularMovieCard m-5 cursor-pointer"
-      onClick={() => handleMovieData(data.id)}
-    >
-      <div className="movieCardPoster">
-        <img className="w-auto rounded-xl" src={isImageAvailable(actorPoster)} alt={title} />
+    <div id={`${data.id}`} className="PopularMovieCard m-5">
+      <div
+        className="movieCardPoster cursor-pointer"
+        onClick={() => handleItemData(data.id)}
+      >
+        <img
+          className="w-auto rounded-xl"
+          src={isImageAvailable(actorPoster)}
+          alt={title}
+        />
       </div>
       <div className="movieCardDetails py-1">
         <div className="movieCardTitle">
           <h3 className="uppercase text-sm text-wrap">{title}</h3>
         </div>
 
-        {type === "movie" ? (
+        {type === "movie" || type === "tv" ? (
           <div className="movieCardData my-1 flex justify-between items-center">
-            <p className="text-xs">{data?.release_date}</p>
-            <p className="text-gray-400 text-xs flex items-center">
+            <p className="text-xs text-gray-400">
+              {data?.release_date ?? data?.first_air_date}
+            </p>
+            <p className="text-gray-400 text-xs flex items-center cursor-pointer">
               <span
                 className="starIcon text-lg"
-                onClick={handleItemToFavorites}
+                onClick={() => handleItemToFavorites(title, data.id)}
               >
                 <CiStar
                   className={`mx-1 ${
@@ -96,7 +101,7 @@ export const Card = ({ type = "movie", data }) => {
         ) : (
           <div className="actorCardData my-1 flex justify-between items-center">
             <p className="text-xs text-gray-400">
-              {actorData?.birthday}{" "}
+              {actorData?.birthday}
               {actorData?.deathday ? ` - ${actorData?.deathday}` : ""}
             </p>
           </div>

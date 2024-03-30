@@ -11,6 +11,7 @@ import { Search } from "./Pages/Search/Search";
 import { MovieDetails } from "./Pages/Movie/MovieDetails";
 
 import "./main.css";
+import { ActorDetails } from "./Pages/Actors/ActorDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
     path: "/movie-data/:type/:query",
     element: <MovieDetails />,
   },
+  {
+    path: "/actor-data/:query",
+    element: <ActorDetails />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

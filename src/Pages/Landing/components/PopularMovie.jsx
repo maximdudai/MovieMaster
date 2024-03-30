@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { getRandomMovie, getMovieBackdrop } from "../../../api/movie/movieData";
 
-
 export const PopularMovie = () => {
 
   const [moviesList, setMoviesList] = useState([]);

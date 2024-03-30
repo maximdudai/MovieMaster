@@ -44,7 +44,12 @@ export const getActorDetails = async (actorId) => {
     }
 };
 
-export const getGender = (gender) => {
-    const genders = ['Not Specified', 'Female', 'Male', 'Non-Binary'];
-    return genders[gender];
+export const getActorImages = async (actorId) => {
+    try {
+        const response = await axios.get(`${appSetting.PEOPLE}/${actorId}/images`, appSetting.API_OPTIONS);
+        return response.data.profiles;
+    } catch (error) {
+        console.error('Error fetching Actor images:', error);
+        throw error;
+    }
 }
