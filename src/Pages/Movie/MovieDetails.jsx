@@ -9,10 +9,13 @@ import { Navigation } from "../../Components/Navigation/Navigation";
 import { searchMovieById } from "../../api/movie/searchMovieById";
 import { getPictures } from "../../api/getPictures";
 
-import { getNumbersFromString, isImageAvailable } from "../../utils/utils";
+import { getNumbersFromString } from "../../utils/utils";
 import { convertMinutesToHours } from "../../utils/utils";
 
+
 import { getMovieTrailer } from "../../api/movie/getMovieTrailer";
+import { getMoviePoster } from '../../api/movie/movieData';
+
 import { getListOfActors } from "../../api/actor/getListOfActors";
 import { FilteActors } from "./components/FilterActors";
 
@@ -20,6 +23,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { departments } from "./data/departments";
 import { Loading } from "../Components/Loading";
+import { companyPhoto } from "../../api/company/companyPhotos";
 const animatedComponents = makeAnimated();
 
 const MovieTrailer = ({ movieCast }) =>
@@ -39,7 +43,7 @@ export const MovieDetails = () => {
     const fetchMovieFullDetails = async () => {
       try {
         const movieId = getNumbersFromString(query);
-  
+        
         const [movieData, movieImages, movieTrailer, movieListActors] = await Promise.all([
           searchMovieById(movieId),
           getPictures(movieId, "backdrop"),
@@ -48,7 +52,10 @@ export const MovieDetails = () => {
         ]);
   
         setMovieData(movieData);
+        
         setMovieImages(movieImages);
+        setSelectedPosterImage(getMoviePoster(movieImages[0].file_path));
+
         setMovieCast(movieTrailer);
   
         const concatMovieActors = movieListActors?.cast?.concat(movieListActors?.crew);
@@ -60,6 +67,7 @@ export const MovieDetails = () => {
       } catch (error) {
         console.error('Error fetching movie details:', error);
       }
+      
     };
   
     fetchMovieFullDetails();
@@ -75,24 +83,21 @@ export const MovieDetails = () => {
     const numImages = Math.floor(Math.random() * 6) + 5;
     const shuffledImages = movieImages?.sort(() => 0.5 - Math.random());
 
-    if (!selectedPosterImage)
-      setSelectedPosterImage(
-        `https://image.tmdb.org/t/p/original/${shuffledImages[0]?.file_path}`
-      );
-
     return shuffledImages.slice(0, numImages);
   };
+
 
   const handleSelectChange = (selected) => {
     setFilters(selected);
   };
+
 
   return (
     <>
       <Navigation />
 
       <main className="p-5">
-        {!movieData.length ? (
+        {movieData.length ? (
           <Loading />
         ) : (
           <div className="movieDataContainer flex flex-col">
@@ -201,17 +206,18 @@ export const MovieDetails = () => {
                   </p>
                   <div className="movieProductionCompaniesList flex flex-wrap gap-2">
                     <ul className="flex gap-2 rounded overflow-x-auto">
-                      {movieData?.production_companies?.map(
+                      {movieData.production_companies?.map(
                         (company, index) => {
                           return (
                             <li
                               key={index}
+                              id={company?.id}
                               className="bg-white/5 flex flex-col justify-between min-h-[5rem] gap-3 text-center p-2 rounded text-xs"
                             >
                               <div className="companyLogo md:min-h-28 flex items-center">
                                 <img
                                   className="w-32"
-                                  src={isImageAvailable(company?.logo_path)}
+                                  src={companyPhoto(company?.logo_path)}
                                   alt="Company Logo"
                                 />
                               </div>
@@ -231,7 +237,7 @@ export const MovieDetails = () => {
             <div className="movieTrailerActorsContainer w-full flex flex-col items-center">
               <div className="movieTrailer w-full p-2 rounded shadow-md shadow-black bg-white/20">
                 <div className="reactPlayer w-full md:flex md:justify-center py-3">
-                  <div className="reactPlayerContainer w-full md:w-1/2 lg:w-2/3 lg:min-h-[40rem]">
+                  <div className="reactPlayerContainer w-full h-full md:w-1/2 lg:w-2/3 lg:min-h-[40rem]">
                     <ReactPlayer
                       width={"100%"}
                       height={"100%"}

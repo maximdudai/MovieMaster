@@ -15,9 +15,9 @@ export const Navigation = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   }
   return (
-    <nav className={`w-full p-5 border-b-2 border-red-600 flex justify-center`}>
+    <nav className={`w-full p-5 md:py-5 border-b-2 border-red-600 flex justify-center`}>
       <div className="container flex justify-between items-center">
-        <div className="landingPageTitle px-0 md:px-5">
+        <div className="landingPageTitle mr-3">
           <span className="text-red-600 uppercase font-semibold mr-1 text-md md:text-2xl">
             Movie
           </span>
