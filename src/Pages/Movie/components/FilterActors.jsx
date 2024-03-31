@@ -1,10 +1,11 @@
 import propTypes from "prop-types";
-import { Link } from "react-router-dom";
 
-import { CiSquareInfo } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
+
 
 export const FilteActors = ({ actors, departments }) => {
   const getDepartmentName = departments?.map((department) => department?.value);
+  const navigate = useNavigate();
 
   const actorLogo = (actor) =>
     actor !== null
@@ -21,6 +22,10 @@ export const FilteActors = ({ actors, departments }) => {
     return actorsList;
   };
 
+  const getActorInfo = (actorId) => {
+    navigate(`/actor-data/${actorId}`, { replace: true });
+  }
+
   return (
     <ul className="grid grid-rows-2 md:grid-rows-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 gap-y-10">
       {getActorsKnownForDepartment(getDepartmentName)?.map((actor, index) => {
@@ -28,6 +33,7 @@ export const FilteActors = ({ actors, departments }) => {
           <li
             key={index}
             className="movieActor cursor-pointer border-[1px] flex flex-col justify-between items-center text-center rounded text-xs"
+            onClick={() => getActorInfo(actor.id)}
           >
             <div className="actorImage p-2">
               <img
@@ -49,16 +55,7 @@ export const FilteActors = ({ actors, departments }) => {
                   </p>
                 )}
               </div>
-              <div className="actorMoreInformation p-2 md:px-2">
-                <Link
-                  className="text-gray-400 hover:text-white/80 text-xl"
-                  href={`https://www.themoviedb.org/person/${actor?.id}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <CiSquareInfo />
-                </Link>
-              </div>
+              
             </div>
           </li>
         );
