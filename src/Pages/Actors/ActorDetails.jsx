@@ -128,11 +128,11 @@ export const ActorDetails = () => {
                 {actorData.birthday && (
                   <div className="birthdayContent">
                     <Paragraph content={"Birthday"} />
-                    <Span content={actorData.birthday} />
                     <Span
-                      className={"ml-2"}
+                      className={"mr-2"}
                       content={getActorAge(actorData.birthday) + " Years Old"}
                     />
+                    <Span content={actorData.birthday} />
                   </div>
                 )}
 

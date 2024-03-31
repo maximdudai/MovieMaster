@@ -2,29 +2,31 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import ReactPlayer from "react-player";
-
 import { GrGallery } from "react-icons/gr";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 import { Navigation } from "../../Components/Navigation/Navigation";
 import { searchMovieById } from "../../api/movie/searchMovieById";
 import { getPictures } from "../../api/getPictures";
 
-import { getNumbersFromString } from "../../utils/utils";
-import { convertMinutesToHours } from "../../utils/utils";
+import {
+  getNumbersFromString,
+  convertMinutesToHours,
+  formatNumber,
+} from "../../utils/utils";
 
 import { getMovieTrailer } from "../../api/movie/getMovieTrailer";
 import { getMoviePoster } from "../../api/movie/movieData";
 
 import { getListOfActors } from "../../api/actor/getListOfActors";
-import { FilteActors } from "./components/FilterActors";
 
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
 import { departments } from "./data/departments";
 import { Loading } from "../Components/Loading";
 import { companyPhoto } from "../../api/company/companyPhotos";
 import { Paragraph } from "../../Components/Paragraph/Paragraph";
 import { Span } from "../../Components/Span/Span";
+import { FilteActors } from "./components/FilterActors";
 
 const animatedComponents = makeAnimated();
 
@@ -92,6 +94,8 @@ export const MovieDetails = () => {
   const handleSelectChange = (selected) => {
     setFilters(selected);
   };
+
+  console.log(movieData);
 
   return (
     <>
@@ -161,12 +165,11 @@ export const MovieDetails = () => {
                     <Span content={movieData?.popularity} />
                   </div>
                   <div className="movieRevenue">
-                    
                     <Paragraph content={"Revenue"} />
                     <div className="movieRevenueList flex flex-wrap gap-2">
-                      <Span content={movieData?.revenue?.toLocaleString("en-US", {
-                          formatMatcher: "basic",
-                        })} />
+                      <Span
+                        content={'$' + formatNumber(parseInt(movieData?.revenue))}
+                      />
                     </div>
                   </div>
                 </div>
@@ -180,11 +183,11 @@ export const MovieDetails = () => {
                           <li
                             key={index}
                             id={company?.id}
-                            className="bg-white/5 flex flex-col justify-between min-h-[5rem] gap-3 text-center p-2 rounded text-xs"
+                            className="bg-white/5 flex flex-col justify-between w-16 min-h-[5rem] gap-3 text-center p-2 rounded text-xs"
                           >
-                            <div className="companyLogo md:min-h-28 flex items-center">
+                            <div className="companyLogo w-full md:min-h-28 flex items-center">
                               <img
-                                className="w-32"
+                                className="w-full"
                                 src={companyPhoto(company?.logo_path)}
                                 alt="Company Logo"
                               />
@@ -216,7 +219,7 @@ export const MovieDetails = () => {
               </div>
               <div className="movieListOfActors w-full lg:w-3/4 mt-5">
                 <div className="actorsSetup md: flex md:justify-between">
-                  <Paragraph content={'List of Actors'} />
+                  <Paragraph content={"List of Actors"} />
                   <div className="sortActors py-2 md:w-1/3">
                     <Select
                       options={departments}

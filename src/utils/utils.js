@@ -19,3 +19,8 @@ export const getGender = (gender) => {
   const genders = ['Not Specified', 'Female', 'Male', 'Non-Binary'];
   return genders[gender];
 }
+
+
+export const formatNumber = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
