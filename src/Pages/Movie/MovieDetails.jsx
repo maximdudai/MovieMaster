@@ -59,7 +59,7 @@ export const MovieDetails = () => {
         setMovieData(movieData);
 
         setMovieImages(movieImages);
-        setSelectedPosterImage(getMoviePoster(movieImages[0].file_path));
+        setSelectedPosterImage(getMoviePoster(movieImages[0]?.file_path));
 
         setMovieCast(movieTrailer);
 
@@ -79,6 +79,7 @@ export const MovieDetails = () => {
     fetchMovieFullDetails();
   }, [query]);
 
+
   const handleSelectPosterImage = (e) => {
     const selectedImage = e.target.src;
     setSelectedPosterImage(selectedImage);
@@ -95,7 +96,6 @@ export const MovieDetails = () => {
     setFilters(selected);
   };
 
-  console.log(movieData);
 
   return (
     <>
@@ -154,7 +154,7 @@ export const MovieDetails = () => {
                 <div className="movieDataBox md:flex justify-between">
                   <div className="movieCategories">
                     <Paragraph content={"Categories"} />
-                    <div className="movieCategoriesList flex flex-wrap gap-2">
+                    <div className="movieCategoriesList flex flex-wrap gap-2 max-w-64">
                       {movieData?.genres?.map((genre, index) => {
                         return <Span key={index} content={genre?.name} />;
                       })}
@@ -183,7 +183,7 @@ export const MovieDetails = () => {
                           <li
                             key={index}
                             id={company?.id}
-                            className="bg-white/5 flex flex-col justify-between w-16 min-h-[5rem] gap-3 text-center p-2 rounded text-xs"
+                            className="bg-white/5 flex flex-col justify-between w-20 min-h-[5rem] gap-3 text-center p-2 rounded text-xs"
                           >
                             <div className="companyLogo w-full md:min-h-28 flex items-center">
                               <img
@@ -207,7 +207,7 @@ export const MovieDetails = () => {
             <div className="movieTrailerActorsContainer w-full flex flex-col items-center">
               <div className="movieTrailer w-full p-2 rounded shadow-md shadow-black bg-white/20">
                 <div className="reactPlayer w-full md:flex md:justify-center py-3">
-                  <div className="reactPlayerContainer w-full h-full md:w-1/2 lg:w-2/3 lg:min-h-[40rem]">
+                  <div className="reactPlayerContainer w-full md:w-1/2 lg:w-2/3 lg:min-h-[40rem]">
                     <ReactPlayer
                       width={"100%"}
                       height={"100%"}
@@ -218,7 +218,7 @@ export const MovieDetails = () => {
                 </div>
               </div>
               <div className="movieListOfActors w-full lg:w-3/4 mt-5">
-                <div className="actorsSetup md: flex md:justify-between">
+                <div className="actorsSetup md:flex md:justify-between">
                   <Paragraph content={"List of Actors"} />
                   <div className="sortActors py-2 md:w-1/3">
                     <Select

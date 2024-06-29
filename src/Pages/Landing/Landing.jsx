@@ -7,7 +7,7 @@ export const Landing = () => {
 
   return (
     <>
-      <div className="container-fluid landingPage p-0">
+      <div className="landingPage p-0">
         <PopularMovie />
         <PopularMovieList />
         <PopularPeople />

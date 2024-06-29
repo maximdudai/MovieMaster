@@ -23,7 +23,7 @@ export const FilteActors = ({ actors, departments }) => {
   };
 
   const getActorInfo = (actorId) => {
-    navigate(`/actor-data/${actorId}`, { replace: true });
+    navigate(`/actor-data/${actorId}`);
   }
 
   return (

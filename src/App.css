@@ -5,8 +5,10 @@ body {
   color: rgb(235, 235, 235);
 
   font-family: 'Roboto Condensed', sans-serif;
-  overflow-x: hidden;
+  overflow-x: auto;
   user-select: none;
+
+  width: 100%;
 }
 
 * {

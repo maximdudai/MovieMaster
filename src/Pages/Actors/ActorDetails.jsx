@@ -16,6 +16,10 @@ import "./style/ActorDetails.css";
 import { Paragraph } from "../../Components/Paragraph/Paragraph";
 import { Span } from "../../Components/Span/Span";
 
+import { CiLink } from "react-icons/ci";
+
+
+
 export const ActorDetails = () => {
   const [actorData, setActorData] = useState([]);
   const [actorDataImages, setActorDataImages] = useState({
@@ -78,7 +82,9 @@ export const ActorDetails = () => {
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   };
 
-  return (
+
+  return !actorData ? <Loading /> :
+  (
     <>
       <Navigation />
 
@@ -91,9 +97,9 @@ export const ActorDetails = () => {
               <h1 className="text-4xl font-bold">{actorData.name}</h1>
             </div>
 
-            <div className="actorInformations flex justify-between flex-col lg:flex-row">
-              <div className="actorImages flex flex-col md:flex-row-reverse">
-                <div className="actorProfileImage w-auto lg:max-w-[30rem] ml-2">
+            <div className="actorInformations flex lg:gap-3 justify-between flex-col lg:flex-row">
+              <div className="actorImages flex flex-col items-center justify-center md:flex-row-reverse">
+                <div className="actorProfileImage max-w-[20rem] lg:w-[30rem] md:ml-2">
                   <img
                     className="w-full rounded-lg shadow-lg"
                     src={getActorPosterImage(actorData.profile_path)}
@@ -101,14 +107,14 @@ export const ActorDetails = () => {
                   />
                 </div>
 
-                {actorDataImages.profiles?.length && (
-                  <div className="actorListOfImages py-2 md:py-0">
-                    <ul className="actorImages flex md:flex-col gap-2 w-max md:max-h-[45rem] px-2 overflow-x-auto md:overflow-y-auto">
+                {/* {actorDataImages.profiles && (
+                  <div className="actorListOfImage py-2 md:py-0">
+                    <ul className="flex md:flex-col w-[20rem] md:max-h-[45rem] gap-2 px-2 overflow-x-auto md:overflow-y-auto">
                       {actorDataImages.profiles?.map((image, index) => {
                         return (
-                          <li key={index}>
+                          <li key={index} className="w-10">
                             <img
-                              className={`w-36 rounded-lg shadow-lg cursor-pointer ${
+                              className={`w-[200px] lg:w-36 rounded-lg shadow-lg cursor-pointer ${
                                 index === actorDataImages.currentPoster &&
                                 "border-2 border-red-500"
                               }`}
@@ -121,10 +127,10 @@ export const ActorDetails = () => {
                       })}
                     </ul>
                   </div>
-                )}
+                )} */}
               </div>
 
-              <div className="actorData lg:w-1/2">
+              <div className="actorData p-2 sm:p-0 lg:w-1/2">
                 {actorData.birthday && (
                   <div className="birthdayContent">
                     <Paragraph content={"Birthday"} />
@@ -158,16 +164,27 @@ export const ActorDetails = () => {
                 )}
 
                 {actorData.also_known_as && (
-                  <div className="alsoKnownAsContent">
+                  <div className="alsoKnownAsContent max-w-[100%]">
                     <Paragraph content={"Also Known As"} />
-                    <Span content={actorData.also_known_as.join(", ")} />
+                    <div className="knownAsList w-full flex flex-wrap overflow-x-auto">
+                    {
+                      actorData.also_known_as.map((name, index) => {
+                        // return <p key={index} className="mr-2">{name}</p>
+                        return <Span key={index} className={'mr-2 my-1'} content={name}  />
+
+                      })
+                    }
+                    </div>
                   </div>
                 )}
 
                 {actorData.homepage && (
                   <div className="homepageContent">
                     <Paragraph content={"Homepage"} />
-                    <Span content={actorData.homepage} />
+                    <a className="flex items-center" rel="noopener noreferrer" target="_blank" href={actorData.homepage}>
+                      <Span className={'mr-2'} content={'LINK'} />
+                      <CiLink />
+                    </a>
                   </div>
                 )}
 

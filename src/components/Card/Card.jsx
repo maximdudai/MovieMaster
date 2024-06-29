@@ -32,11 +32,11 @@ export const Card = ({ type = "movie", data }) => {
   }, [data.id, type]);
 
   const handleItemData = (dataID) => {
-    if(type === "actor")
-      navigate(`/actor-data/${dataID}`, { replace: true });
-
-    else if(type === "tv" || type === "movie") {
-      navigate(`/movie-data/${type}/${dataID}`, { replace: true });
+    if (type === "actor")
+      navigate(`/actor-data/${dataID}`);
+  
+    else if (type === "tv" || type === "movie") {
+      navigate(`/movie-data/${type}/${dataID}`);
     }
   };
 

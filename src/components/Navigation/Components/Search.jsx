@@ -16,7 +16,7 @@ export const Search = ({ className, btnClassName }) => {
   const handleSearchMovie = async (e) => {
     e.preventDefault();
 
-    navigate(`/search/query=${searchBarInput}`, { replace: true });
+    navigate(`/search/query=${searchBarInput}`);
   };
   
 
